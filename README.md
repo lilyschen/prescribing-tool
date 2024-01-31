@@ -13,9 +13,9 @@ Any **pharmacist** in *British Columbia* who would like to prescribe for minor a
 
 ## Why is this project of interest to you?
 Pharmacist Prescribing Services rolled out in British Columbia in June 2023. 
-As a pharmacist, I found it time-consuming to look through guidelines and resources on what conditions and medications 
-I am allowed to prescribe for each time a patient presents at the pharmacy. 
-I hope this project could increase the efficiency and decrease the workload of a pharmacist.
+As a pharmacist, I found it time-consuming to look through guidelines and resources on what conditions 
+I am allowed to prescribe for and what medications to prescribe each time a patient presents at the pharmacy. 
+I hope this project would increase the efficiency and decrease the workload of a pharmacist.
 
 A *bulleted* list:
 - item 1
