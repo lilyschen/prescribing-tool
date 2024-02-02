@@ -5,8 +5,9 @@ The application will allow pharmacists to efficiently prescribe medications
 for minor ailments in British Columbia.
 Pharmacists can choose a minor ailment condition, 
 access a list of medications recommended for that specific condition, and prescribe them to patients.
-In addition, the pharmacists will be able to modify the list of conditions 
-and associated medications stored in the application database.
+In addition, pharmacists will be able to modify the list of conditions 
+and associated medications stored in the application database. 
+Pharmacists will also be able to view and modify the list of medications each patient is taking.
 
 ## Who will use it?
 Any **pharmacist** in *British Columbia* who would like to prescribe for minor ailments.
