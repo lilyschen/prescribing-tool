@@ -241,6 +241,7 @@ public class PrescribingApp {
         if (selCond != null) {
             displayDrugs(selCond);
             modifyDrugs(selCond);
+            checkStat(selCond);
         } else {
             System.out.println("Condition not found.");
         }
@@ -259,9 +260,36 @@ public class PrescribingApp {
             selection = selection.toLowerCase();
             selCond.addDrug(new Drug(selection));
         } else if (selection.equals("n")) {
-            System.out.println("Returning to main page.");
+            System.out.println("");
         } else {
             System.out.println("Selection not valid.");
+        }
+    }
+
+    private void checkStat(Condition selCond) {
+        System.out.println("\nSelect a drug to see how many people are taking it or type 'no' to return to main page.");
+        String selection = input.next();
+        selection = selection.toLowerCase();
+
+        if (selection.equals("no")) {
+            System.out.println("Returning to main page.");
+        } else {
+            Drug selDrug = findDrug(selCond, selection);
+            displayNumTimesPrescribed(selDrug);
+        }
+    }
+
+    private void displayNumTimesPrescribed(Drug drug) {
+        if (drug != null) {
+            int num = 0;
+            for (Patient patient : patients) {
+                if (patient.getDrugs().contains(drug)) {
+                    num++;
+                }
+            }
+            System.out.println("The number of patient(s) currently taking " + drug.getName() + " is " + num);
+        } else {
+            System.out.println("Drug not found.");
         }
     }
 
