@@ -17,10 +17,10 @@ public class PrescribingApp {
     private Condition headache;
     private Drug tretinoin;
     private Drug adapalene;
-    private Drug clindamycin;
     private Drug acetaminophen;
     private Drug ibuprofen;
-    private Drug naproxen;
+    private Patient emily;
+    private Patient molly;
 
     public PrescribingApp() {
         runApp();
@@ -49,7 +49,7 @@ public class PrescribingApp {
 
     private void processCommand(String command) {
         if (command.equals("p")) {
-            // searchPatient();
+            searchPatient();
         } else if (command.equals("d")) {
             openDatabase();
         } else {
@@ -65,26 +65,25 @@ public class PrescribingApp {
 
         acne = new Condition("acne");
         headache = new Condition("headache");
-
         tretinoin = new Drug("tretinoin");
         adapalene = new Drug("adapalene");
-        clindamycin = new Drug("clindamycin");
         acetaminophen = new Drug("acetaminophen");
         ibuprofen = new Drug("ibuprofen");
-        naproxen = new Drug("naproxen");
 
         conditions.add(acne);
         conditions.add(headache);
 
         acne.addDrug(tretinoin);
         acne.addDrug(adapalene);
-        acne.addDrug(clindamycin);
-
         headache.addDrug(acetaminophen);
         headache.addDrug(ibuprofen);
-        headache.addDrug(naproxen);
 
-
+        molly = new Patient("molly");
+        emily = new Patient("emily");
+        molly.addDrug(tretinoin);
+        emily.addDrug(acetaminophen);
+        patients.add(emily);
+        patients.add(molly);
     }
 
     private void displayMenu() {
@@ -92,6 +91,144 @@ public class PrescribingApp {
         System.out.println("\tp -> find or create patient");
         System.out.println("\td -> view database");
         System.out.println("\tq -> quit App");
+    }
+
+    private void searchPatient() {
+        System.out.println("\nEnter a patient name to search or enter 'add' to add a new patient.");
+        String selection = input.next();
+        selection = selection.toLowerCase();
+        Patient selPat = selectPatient(selection);
+
+        if (selPat != null) {
+            System.out.println("You have selected " + selPat.getName());
+            modifyPatient(selPat);
+        } else {
+            System.out.println("Patient not found.");
+        }
+    }
+
+    private void modifyPatient(Patient patient) {
+        System.out.println("\nSelect from:");
+        System.out.println("\tp -> prescribe for minor ailments");
+        System.out.println("\td -> view drug list");
+        String command = input.next();
+        command = command.toLowerCase();
+
+        if (command.equals("p")) {
+            prescribe(patient);
+        } else if (command.equals("d")) {
+            displayPatientsDrugs(patient);
+            modifyPatientsDrugs(patient);
+        } else {
+            System.out.println("Selection not valid.");
+        }
+    }
+
+    private void prescribe(Patient patient) {
+        System.out.println("Here is a list of available conditions to choose from:");
+        displayConditions();
+        System.out.println("Enter the name of the condition you are prescribing for.");
+
+        String selection = input.next();
+        selection = selection.toLowerCase();
+
+        Condition selCond = findCondition(selection);
+
+        if (selCond != null) {
+            System.out.println("Here is a list of recommended medications:");
+            displayDrugs(selCond);
+            System.out.println("Enter the name of the drug you would like to prescribe.");
+            String drugName = input.next();
+            drugName = drugName.toLowerCase();
+            Drug selDrug = findDrug(selCond, drugName);
+
+            if (selDrug != null) {
+                patient.addDrug(selDrug);
+                System.out.println(selDrug.getName() + " has been added to patient's drug list.");
+            } else {
+                System.out.println("Selection not valid.");
+            }
+
+        } else {
+            System.out.println("Condition not found.");
+        }
+    }
+
+    private Drug findDrug(Condition condition, String drugName) {
+        for (Drug drug : condition.getDrugs()) {
+            if (drug.getName().equals(drugName)) {
+                return drug;
+            }
+        }
+        return null;
+    }
+
+    private void displayPatientsDrugs(Patient patient) {
+        for (Drug drug : patient.getDrugs()) {
+            System.out.println(drug.getName());
+        }
+    }
+
+    private void modifyPatientsDrugs(Patient patient) {
+        System.out.println("\nWould you like to delete a drug on " + patient.getName() + "'s drug list?");
+        System.out.println("\ty -> yes");
+        System.out.println("\tn -> no");
+        String command = input.next();
+        command = command.toLowerCase();
+
+        if (command.equals("y")) {
+            removePatientsDrug(patient);
+        } else if (command.equals("n")) {
+            System.out.println("Returning to main page.");
+        } else {
+            System.out.println("Selection not valid.");
+        }
+    }
+
+    private void removePatientsDrug(Patient patient) {
+        System.out.println("Enter the name of the drug you would like to remove,");
+        String drugName = input.next();
+        drugName = drugName.toLowerCase();
+        Drug drug = findDrugOnPatientList(patient, drugName);
+
+        if (drug != null) {
+            patient.removeDrug(drug);
+            System.out.println(drug.getName() + " has been successfully deleted.");
+        } else {
+            System.out.println("Selection not valid.");
+        }
+
+    }
+
+    private Drug findDrugOnPatientList(Patient patient, String drugName) {
+        for (Drug drug : patient.getDrugs()) {
+            if (drug.getName().equals(drugName)) {
+                return drug;
+            }
+        }
+        return null;
+    }
+
+    private Patient selectPatient(String selection) {
+        if (selection.equals("add")) {
+            System.out.println("Enter the patient name.");
+            String patName = input.next();
+            patName = patName.toLowerCase();
+            Patient newPat = new Patient(patName);
+            patients.add(newPat);
+            return newPat;
+        } else {
+            return findPatient(selection);
+        }
+    }
+
+    private Patient findPatient(String name) {
+        for (Patient patient : patients) {
+            if (patient.getName().equals(name)) {
+                return patient;
+            }
+        }
+        return null;
     }
 
     private void openDatabase() {
@@ -130,7 +267,12 @@ public class PrescribingApp {
 
     private Condition selectCondition(String selection) {
         if (selection.equals("add")) {
-            return null;//stub adds a new condition - selCond
+            System.out.println("Enter the condition name.");
+            String condName = input.next();
+            condName = condName.toLowerCase();
+            Condition newCond = new Condition(condName);
+            conditions.add(newCond);
+            return newCond;
         } else {
             return findCondition(selection);
         }
