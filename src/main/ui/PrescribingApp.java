@@ -189,7 +189,7 @@ public class PrescribingApp {
         System.out.println("Enter the name of the drug you would like to remove,");
         String drugName = input.next();
         drugName = drugName.toLowerCase();
-        Drug drug = findDrugOnPatientList(patient, drugName);
+        Drug drug = patient.findDrugInPatientList(drugName);
 
         if (drug != null) {
             patient.removeDrug(drug);
@@ -197,17 +197,8 @@ public class PrescribingApp {
         } else {
             System.out.println("Selection not valid.");
         }
-
     }
 
-    private Drug findDrugOnPatientList(Patient patient, String drugName) {
-        for (Drug drug : patient.getDrugs()) {
-            if (drug.getName().equals(drugName)) {
-                return drug;
-            }
-        }
-        return null;
-    }
 
     private Patient selectPatient(String selection) {
         if (selection.equals("add")) {

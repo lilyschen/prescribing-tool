@@ -74,4 +74,18 @@ public class PatientTest {
         assertEquals(0, patient.getDrugs().size());
 
     }
+
+    @Test
+    void testFindDrugInPatientList() {
+        Drug drug1 = new Drug("drug1");
+        Drug drug2 = new Drug("drug2");
+        Drug drug3 = new Drug("drug3");
+        patient.addDrug(drug1);
+        patient.addDrug(drug2);
+        patient.addDrug(drug3);
+        assertEquals(null, patient.findDrugInPatientList("drug0"));
+        assertEquals(drug1, patient.findDrugInPatientList("drug1"));
+        assertEquals(drug2, patient.findDrugInPatientList("drug2"));
+        assertEquals(drug3, patient.findDrugInPatientList("drug3"));
+    }
 }

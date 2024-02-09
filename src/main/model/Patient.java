@@ -27,4 +27,13 @@ public class Patient {
     public List<Drug> getDrugs() {
         return drugs;
     }
+
+    public Drug findDrugInPatientList(String drugName) {
+        for (Drug drug : drugs) {
+            if (drug.getName().equals(drugName)) {
+                return drug;
+            }
+        }
+        return null;
+    }
 }
