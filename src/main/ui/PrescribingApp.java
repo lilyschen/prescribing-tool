@@ -163,6 +163,7 @@ public class PrescribingApp {
             if (selDrug != null) {
                 patient.addDrug(selDrug);
                 System.out.println(selDrug.getName() + " has been added to patient's drug list.");
+                System.out.println("side effects: " + selDrug.displaySideEffects());
             } else {
                 System.out.println("Selection not valid.");
             }
@@ -255,21 +256,20 @@ public class PrescribingApp {
 
         if (selCond != null) {
             displayDrugs(selCond);
-            modifyDrugs(selCond);
-            checkStat(selCond);
+            modifyDrugList(selCond);
         } else {
             System.out.println("Condition not found.");
         }
     }
 
     // MODIFIES: this
-    // EFFECTS: if user inputs yes, allows the user to add a drug to a condition
-    //          if user inputs no, does nothing
-    //          else, prints out input not valid
-    private void modifyDrugs(Condition selCond) {
-        System.out.println("\nWould you like to add a drug to the condition?");
-        System.out.println("\ty -> yes");
-        System.out.println("\tn -> no");
+    // EFFECTS: processes user command to view or modify drug list for
+    //          the given condition
+    private void modifyDrugList(Condition selCond) {
+        System.out.println("\nSelect from:");
+        System.out.println("\ta -> add a drug to the condition");
+        System.out.println("\tc -> check how many people is taking a drug");
+        System.out.println("\ts -> add side effect to a drug");
         String selection = input.next();
         selection = selection.toLowerCase();
 
@@ -278,27 +278,58 @@ public class PrescribingApp {
             selection = input.next();
             selection = selection.toLowerCase();
             selCond.addDrug(new Drug(selection));
-        } else if (selection.equals("n")) {
-            System.out.println("");
+        } else if (selection.equals("c")) {
+            checkStat(selCond);
+        } else if (selection.equals("s")) {
+            modifySideEffects(selCond);
         } else {
             System.out.println("Selection not valid.");
         }
     }
 
-    // EFFECTS: if user inputs no, prints out returning to main page
-    //          otherwise, display the number of times a drug is being prescribed
+    // EFFECTS: allows user to select a drug and display how many people are taking it
     private void checkStat(Condition selCond) {
-        System.out.println("\nSelect a drug to see how many people are taking it or type 'no' to return to main page.");
+        System.out.println("\nSelect a drug to see how many people are taking it.");
         String selection = input.next();
         selection = selection.toLowerCase();
 
-        if (selection.equals("no")) {
-            System.out.println("Returning to main page.");
+        Drug selDrug = selCond.findDrug(selection);
+        displayNumTimesPrescribed(selDrug);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: allows user to select a drug and view the side effects
+    private void modifySideEffects(Condition selCond) {
+        System.out.println("\nSelect a drug to view the side effects.");
+        String selection = input.next();
+        selection = selection.toLowerCase();
+
+        Drug selDrug = selCond.findDrug(selection);
+        System.out.println(selDrug.displaySideEffects());
+        addSideEffect(selDrug);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: processes user command and allows user to add a side effect to the given drug
+    private void addSideEffect(Drug selDrug) {
+        System.out.println("\nWould you like to add a side effect to this drug?");
+        System.out.println("\ny -> yes");
+        System.out.println("\nn -> no");
+        String selection = input.next();
+        selection = selection.toLowerCase();
+
+        if (selection.equals("n")) {
+            System.out.println("Returning to main menu");
+        } else if (selection.equals("y")) {
+            System.out.println("Enter the side effect you would like to add:");
+            String sideEffect = input.next();
+            sideEffect = sideEffect.toLowerCase();
+            selDrug.addSideEffect(sideEffect);
         } else {
-            Drug selDrug = selCond.findDrug(selection);
-            displayNumTimesPrescribed(selDrug);
+            System.out.println("Selection not valid.");
         }
     }
+
 
     // EFFECTS: prints out the number of patients taking the given drug
     //          if the given drug is not found, prints out not found

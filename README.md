@@ -21,11 +21,13 @@ I hope this project will increase the efficiency and decrease the workload of a 
 ## User Stories
 - As a user, I want to be able to **add** a condition to the database
 - As a user, I want to be able to **add** a medication to a condition in the database
+- As a user, I want to be able to **add** a side effect to a drug in the database
 - As a user, I want to be able to **view** a list of all the conditions in the database
 - As a user, I want to be able to **view** a list of medications recommended for a selected condition
 - As a user, I want to be able to **add** a patient to the list of patients in the database
 - As a user, I want to be able to **view** a list of medications a patient is taking
-- As a user, I want to be able to **add** a medication to a patient's list of medications
+- As a user, I want to be able to **add** a medication to a patient's list of medications by prescribing
+- As a user, I want to be able to **view** a list of side effects of the prescribed medication
 - As a user, I want to be able to **remove** a medication from a patient's list of medications
 - As a user, I want to be able to **see** the number of patients taking a specific medication
 

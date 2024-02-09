@@ -17,7 +17,7 @@ public class Condition {
 
     // MODIFIES: this
     // EFFECTS: adds the given drug to the drug list with no duplicates
-    //          if given drug is already in list, do nothing
+    //          if given drug is already in list, does nothing
     public void addDrug(Drug drug) {
         if (!drugs.contains(drug)) {
             drugs.add(drug);
