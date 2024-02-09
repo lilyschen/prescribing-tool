@@ -48,6 +48,8 @@ public class DrugTest {
 
     @Test
     void testDisplaySideEffects() {
+        assertEquals("", drug.displaySideEffects());
+
         drug.addSideEffect("vomiting");
         assertEquals("vomiting", drug.displaySideEffects());
 
