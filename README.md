@@ -30,5 +30,5 @@ I hope this project will increase the efficiency and decrease the workload of a 
 - As a user, I want to be able to **see** the number of patients taking a specific medication
 
 ## Note
-- followed Teller App format for Phase 1
+- followed Teller App format for Phase 1 of this project
 - condition & drug list from BC Pharmacy Association MACS Resources website
