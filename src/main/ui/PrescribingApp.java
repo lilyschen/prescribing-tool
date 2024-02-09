@@ -8,24 +8,28 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+// Prescribing application
 public class PrescribingApp {
-    private List<Condition> conditions;
-    private List<Patient> patients;
+    private List<Condition> conditions;  // a list of conditions available to prescribe from
+    private List<Patient> patients;      // a list of patients
     private Scanner input;
 
-    private Condition acne;      //test conditions & medications
-    private Condition headache;
-    private Drug tretinoin;
-    private Drug adapalene;
-    private Drug acetaminophen;
-    private Drug ibuprofen;
-    private Patient emily;
-    private Patient molly;
+    private Condition acne;      // test condition
+    private Condition headache;  // test condition
+    private Drug tretinoin;      // test drug
+    private Drug adapalene;      // test drug
+    private Drug acetaminophen;  // test drug
+    private Drug ibuprofen;      // test drug
+    private Patient emily;       // test patient
+    private Patient molly;       // test patient
 
+    // EFFECTS: runs the prescribing application
     public PrescribingApp() {
         runApp();
     }
 
+    // MODIFIES: this
+    // EFFECTS: processes user input
     private void runApp() {
         boolean keepRunning = true;
         String command;
@@ -47,6 +51,8 @@ public class PrescribingApp {
         System.out.println("\nGoodbye!");
     }
 
+    // MODIFIES: this
+    // EFFECTS: processes user command
     private void processCommand(String command) {
         if (command.equals("p")) {
             searchPatient();
@@ -57,6 +63,8 @@ public class PrescribingApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes patient list and condition list and test drugs, conditions, and patients
     private void init() {
         conditions = new ArrayList<>();
         patients = new ArrayList<>();
@@ -86,6 +94,7 @@ public class PrescribingApp {
         patients.add(molly);
     }
 
+    // EFFECTS: displays menus of options to user
     private void displayMenu() {
         System.out.println("\nSelect from:");
         System.out.println("\tp -> find or create patient");
@@ -93,6 +102,9 @@ public class PrescribingApp {
         System.out.println("\tq -> quit App");
     }
 
+    // MODIFIES: this
+    // EFFECTS: processes user commands to allow user to view and modify a
+    //          patient's list of medications
     private void searchPatient() {
         System.out.println("\nEnter a patient name to search or enter 'add' to add a new patient.");
         String selection = input.next();
@@ -107,6 +119,9 @@ public class PrescribingApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: processes user commands and allows user to view or
+    //          modify the patient's drug list
     private void modifyPatient(Patient patient) {
         System.out.println("\nSelect from:");
         System.out.println("\tp -> prescribe for minor ailments");
@@ -124,6 +139,9 @@ public class PrescribingApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: processes user commands to allows user to add/prescribe drug to the
+    //          given patient
     private void prescribe(Patient patient) {
         System.out.println("Here is a list of available conditions to choose from:");
         displayConditions();
@@ -140,7 +158,7 @@ public class PrescribingApp {
             System.out.println("Enter the name of the drug you would like to prescribe.");
             String drugName = input.next();
             drugName = drugName.toLowerCase();
-            Drug selDrug = findDrug(selCond, drugName);
+            Drug selDrug = selCond.findDrug(drugName);
 
             if (selDrug != null) {
                 patient.addDrug(selDrug);
@@ -154,21 +172,17 @@ public class PrescribingApp {
         }
     }
 
-    private Drug findDrug(Condition condition, String drugName) {
-        for (Drug drug : condition.getDrugs()) {
-            if (drug.getName().equals(drugName)) {
-                return drug;
-            }
-        }
-        return null;
-    }
-
+    // EFFECTS: prints out the names of the medications
+    // the patient is taking
     private void displayPatientsDrugs(Patient patient) {
         for (Drug drug : patient.getDrugs()) {
             System.out.println(drug.getName());
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: asks if user would like to delete a drug from a patient's drug list
+    //          and processes the user command
     private void modifyPatientsDrugs(Patient patient) {
         System.out.println("\nWould you like to delete a drug on " + patient.getName() + "'s drug list?");
         System.out.println("\ty -> yes");
@@ -185,6 +199,8 @@ public class PrescribingApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: allows user to remove a drug that the given patient is taking
     private void removePatientsDrug(Patient patient) {
         System.out.println("Enter the name of the drug you would like to remove,");
         String drugName = input.next();
@@ -199,7 +215,10 @@ public class PrescribingApp {
         }
     }
 
-
+    // MODIFIES: this
+    // EFFECTS: if user inputs "add", allows user to add a new patient
+    //          to the patient list and returns the new patient
+    //          otherwise, allows user to find existing patient and return it
     private Patient selectPatient(String selection) {
         if (selection.equals("add")) {
             System.out.println("Enter the patient name.");
@@ -213,6 +232,8 @@ public class PrescribingApp {
         }
     }
 
+    // EFFECTS: returns a patient in patient list that matches given name
+    //          returns null if not found
     private Patient findPatient(String name) {
         for (Patient patient : patients) {
             if (patient.getName().equals(name)) {
@@ -222,6 +243,9 @@ public class PrescribingApp {
         return null;
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays a list of conditions in the database
+    //          and processes user command to modify the database
     private void openDatabase() {
         displayConditions();
         System.out.println("\nSelect a condition by entering its name or enter 'add' to add a new condition");
@@ -238,6 +262,10 @@ public class PrescribingApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: if user inputs yes, allows the user to add a drug to a condition
+    //          if user inputs no, does nothing
+    //          else, prints out input not valid
     private void modifyDrugs(Condition selCond) {
         System.out.println("\nWould you like to add a drug to the condition?");
         System.out.println("\ty -> yes");
@@ -257,6 +285,8 @@ public class PrescribingApp {
         }
     }
 
+    // EFFECTS: if user inputs no, prints out returning to main page
+    //          otherwise, display the number of times a drug is being prescribed
     private void checkStat(Condition selCond) {
         System.out.println("\nSelect a drug to see how many people are taking it or type 'no' to return to main page.");
         String selection = input.next();
@@ -265,11 +295,13 @@ public class PrescribingApp {
         if (selection.equals("no")) {
             System.out.println("Returning to main page.");
         } else {
-            Drug selDrug = findDrug(selCond, selection);
+            Drug selDrug = selCond.findDrug(selection);
             displayNumTimesPrescribed(selDrug);
         }
     }
 
+    // EFFECTS: prints out the number of patients taking the given drug
+    //          if the given drug is not found, prints out not found
     private void displayNumTimesPrescribed(Drug drug) {
         if (drug != null) {
             int num = 0;
@@ -284,6 +316,10 @@ public class PrescribingApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: if "add" command is given, asks user to input a condition name,
+    //          adds the condition to the condition list and returns the new condition
+    //          otherwise, returns the condition found based on given string
     private Condition selectCondition(String selection) {
         if (selection.equals("add")) {
             System.out.println("Enter the condition name.");
@@ -297,18 +333,23 @@ public class PrescribingApp {
         }
     }
 
+    // EFFECTS: prints out the names of the conditions in the condition list
     private void displayConditions() {
         for (Condition condition : conditions) {
             System.out.println(condition.getName());
         }
     }
 
+    // EFFECTS: prints out the names of the drugs
+    // used for treatment for the given condition
     private void displayDrugs(Condition condition) {
         for (Drug drug : condition.getDrugs()) {
             System.out.println(drug.getName());
         }
     }
 
+    // EFFECTS: returns a condition in condition list that matches given name
+    //          returns null if not found
     private Condition findCondition(String name) {
         for (Condition condition : conditions) {
             if (condition.getName().equals(name)) {

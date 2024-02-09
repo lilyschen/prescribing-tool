@@ -24,6 +24,18 @@ public class Condition {
         }
     }
 
+    // EFFECTS: if the given name is the name of a drug in
+    //          the drug list, returns the drug
+    //          Otherwise, returns null
+    public Drug findDrug(String drugName) {
+        for (Drug drug : drugs) {
+            if (drug.getName().equals(drugName)) {
+                return drug;
+            }
+        }
+        return null;
+    }
+
     public String getName() {
         return name;
     }

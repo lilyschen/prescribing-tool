@@ -28,3 +28,7 @@ I hope this project will increase the efficiency and decrease the workload of a 
 - As a user, I want to be able to **add** a medication to a patient's list of medications
 - As a user, I want to be able to **remove** a medication from a patient's list of medications
 - As a user, I want to be able to **see** the number of patients taking a specific medication
+
+## Note
+- followed Teller App format for Phase 1
+- condition & drug list from BC Pharmacy Association MACS Resources website

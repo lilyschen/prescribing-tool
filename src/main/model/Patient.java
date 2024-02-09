@@ -31,14 +31,6 @@ public class Patient {
         drugs.remove(drug);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public List<Drug> getDrugs() {
-        return drugs;
-    }
-
     // EFFECTS: if the given name is the name of a drug in
     //          the drug list, returns the drug
     //          Otherwise, returns null
@@ -49,5 +41,13 @@ public class Patient {
             }
         }
         return null;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Drug> getDrugs() {
+        return drugs;
     }
 }

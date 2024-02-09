@@ -50,4 +50,18 @@ class ConditionTest {
         condition.addDrug(drug1);
         assertEquals(1, condition.getDrugs().size());
     }
+
+    @Test
+    void testFindDrug() {
+        Drug drug1 = new Drug("drug1");
+        Drug drug2 = new Drug("drug2");
+        Drug drug3 = new Drug("drug3");
+        condition.addDrug(drug1);
+        condition.addDrug(drug2);
+        condition.addDrug(drug3);
+        assertEquals(null, condition.findDrug("drug0"));
+        assertEquals(drug1, condition.findDrug("drug1"));
+        assertEquals(drug2, condition.findDrug("drug2"));
+        assertEquals(drug3, condition.findDrug("drug3"));
+    }
 }
