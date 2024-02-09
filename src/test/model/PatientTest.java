@@ -42,6 +42,16 @@ public class PatientTest {
     }
 
     @Test
+    void testAddDrugDuplicate() {
+        Drug drug1 = new Drug("drug1");
+        patient.addDrug(drug1);
+        assertEquals(1, patient.getDrugs().size());
+
+        patient.addDrug(drug1);
+        assertEquals(1, patient.getDrugs().size());
+    }
+
+    @Test
     void testRemoveDrugOnce() {
         Drug drug1 = new Drug("drug1");
         patient.addDrug(drug1);
@@ -49,6 +59,17 @@ public class PatientTest {
 
         patient.removeDrug(drug1);
         assertEquals(0, patient.getDrugs().size());
+    }
+
+    @Test
+    void testRemoveDrugNotThere() {
+        Drug drug1 = new Drug("drug1");
+        Drug drug2 = new Drug("drug2");
+        patient.addDrug(drug1);
+        assertEquals(1, patient.getDrugs().size());
+
+        patient.removeDrug(drug2);
+        assertEquals(1, patient.getDrugs().size());
     }
 
     @Test

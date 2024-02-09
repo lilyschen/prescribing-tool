@@ -28,7 +28,7 @@ public class PrescribingApp {
 
     private void runApp() {
         boolean keepRunning = true;
-        String command = null;
+        String command;
 
         init();
 

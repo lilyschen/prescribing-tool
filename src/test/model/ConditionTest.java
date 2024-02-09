@@ -40,4 +40,14 @@ class ConditionTest {
         assertEquals(drug2, condition.getDrugs().get(1));
         assertEquals(drug3, condition.getDrugs().get(2));
     }
+
+    @Test
+    void testAddDrugDuplicate() {
+        Drug drug1 = new Drug("drug1");
+        condition.addDrug(drug1);
+        assertEquals(1, condition.getDrugs().size());
+
+        condition.addDrug(drug1);
+        assertEquals(1, condition.getDrugs().size());
+    }
 }
