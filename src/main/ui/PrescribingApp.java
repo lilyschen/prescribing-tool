@@ -269,7 +269,7 @@ public class PrescribingApp {
         System.out.println("\nSelect from:");
         System.out.println("\ta -> add a drug to the condition");
         System.out.println("\tc -> check how many people is taking a drug");
-        System.out.println("\ts -> add side effect to a drug");
+        System.out.println("\ts -> view or add side effect(s) to a drug");
         String selection = input.next();
         selection = selection.toLowerCase();
 
@@ -310,23 +310,30 @@ public class PrescribingApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: processes user command and allows user to add a side effect to the given drug
+    // EFFECTS: processes user command and allows user to add a side effect(s) to the given drug
     private void addSideEffect(Drug selDrug) {
         System.out.println("\nWould you like to add a side effect to this drug?");
-        System.out.println("\ny -> yes");
-        System.out.println("\nn -> no");
-        String selection = input.next();
-        selection = selection.toLowerCase();
+        boolean keepGoing = true;
+        while (keepGoing) {
+            System.out.println("\ty -> yes");
+            System.out.println("\tn -> no");
+            String selection = input.next();
+            selection = selection.toLowerCase();
 
-        if (selection.equals("n")) {
-            System.out.println("Returning to main menu");
-        } else if (selection.equals("y")) {
-            System.out.println("Enter the side effect you would like to add:");
-            String sideEffect = input.next();
-            sideEffect = sideEffect.toLowerCase();
-            selDrug.addSideEffect(sideEffect);
-        } else {
-            System.out.println("Selection not valid.");
+            if (selection.equals("n")) {
+                System.out.println("Returning to main menu");
+                keepGoing = false;
+            } else if (selection.equals("y")) {
+                System.out.println("Enter the side effect you would like to add:");
+                String sideEffect = input.next();
+                sideEffect = sideEffect.toLowerCase();
+                selDrug.addSideEffect(sideEffect);
+                System.out.println("New side effect list: " + selDrug.displaySideEffects());
+                System.out.println("Would you like to add another side effect to this drug?");
+            } else {
+                System.out.println("Selection not valid.");
+                keepGoing = false;
+            }
         }
     }
 
