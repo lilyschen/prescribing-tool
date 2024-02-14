@@ -9,6 +9,7 @@ public class Condition {
     private String name;         // name of the condition
     private List<Drug> drugs;    // a list of drugs used for treatment
 
+    // REQUIRES: condition name has a non-zero length
     // EFFECTS: constructs the condition with given name and an empty drug list
     public Condition(String name) {
         this.name = name;

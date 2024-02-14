@@ -9,6 +9,7 @@ public class Patient {
     private String name;        // name of the patient
     private List<Drug> drugs;   // a list of prescribed drugs
 
+    // REQUIRES: patient name has a non-zero length
     // EFFECTS: constructs the patient with given name and an empty drug list
     public Patient(String name) {
         this.name = name;

@@ -8,6 +8,7 @@ public class Drug {
     private String name;                  // name of the drug
     private List<String> sideEffects;     // a list of side effects
 
+    // REQUIRES: drug name has a non-zero length
     // EFFECTS: constructs the drug with given name and empty side effects list
     public Drug(String name) {
         this.name = name;
@@ -26,13 +27,14 @@ public class Drug {
 
     // EFFECTS: returns a string with all the side effects
     //          divided by a comma
+    //          If no side effects listed, return null
     public String displaySideEffects() {
         String sideEffectList = "";
         for (String sideEffect : sideEffects) {
             sideEffectList = sideEffectList + ", " + sideEffect;
         }
         if (sideEffects.size() == 0) {
-            return sideEffectList;
+            return null;
         } else {
             return sideEffectList.substring(2);
         }

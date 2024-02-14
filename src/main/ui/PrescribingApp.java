@@ -29,7 +29,7 @@ public class PrescribingApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: processes user input
+    // EFFECTS: processes user input from main menu
     private void runApp() {
         boolean keepRunning = true;
         String command;
@@ -52,7 +52,7 @@ public class PrescribingApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: processes user command
+    // EFFECTS: processes user command from main menu
     private void processCommand(String command) {
         if (command.equals("p")) {
             searchPatient();
@@ -103,8 +103,8 @@ public class PrescribingApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: processes user commands to allow user to view and modify a
-    //          patient's list of medications
+    // EFFECTS: processes user commands to allow user to view or add a patient
+    //          and modify the patient's list of medications
     private void searchPatient() {
         System.out.println("\nEnter a patient name to search or enter 'add' to add a new patient.");
         String selection = input.next();
@@ -174,10 +174,14 @@ public class PrescribingApp {
     }
 
     // EFFECTS: prints out the names of the medications
-    // the patient is taking
+    //          the patient is taking
     private void displayPatientsDrugs(Patient patient) {
-        for (Drug drug : patient.getDrugs()) {
-            System.out.println(drug.getName());
+        if (patient.getDrugs().isEmpty()) {
+            System.out.println("This patient is currently not taking any medications.");
+        } else {
+            for (Drug drug : patient.getDrugs()) {
+                System.out.println(drug.getName());
+            }
         }
     }
 
@@ -273,11 +277,12 @@ public class PrescribingApp {
         String selection = input.next();
         selection = selection.toLowerCase();
 
-        if (selection.equals("y")) {
+        if (selection.equals("a")) {
             System.out.println("Enter the drug name.");
             selection = input.next();
             selection = selection.toLowerCase();
             selCond.addDrug(new Drug(selection));
+            System.out.println(selection + " has been added successfully.");
         } else if (selection.equals("c")) {
             checkStat(selCond);
         } else if (selection.equals("s")) {
@@ -299,14 +304,23 @@ public class PrescribingApp {
 
     // MODIFIES: this
     // EFFECTS: allows user to select a drug and view the side effects
+    //          and add side effects
     private void modifySideEffects(Condition selCond) {
         System.out.println("\nSelect a drug to view the side effects.");
         String selection = input.next();
         selection = selection.toLowerCase();
 
         Drug selDrug = selCond.findDrug(selection);
-        System.out.println(selDrug.displaySideEffects());
-        addSideEffect(selDrug);
+        if (selDrug == null) {
+            System.out.println("Drug not found.");
+        } else {
+            if (selDrug.displaySideEffects() == null) {
+                System.out.println("No side effects listed.");
+            } else {
+                System.out.println(selDrug.displaySideEffects());
+            }
+            addSideEffect(selDrug);
+        }
     }
 
     // MODIFIES: this
@@ -379,7 +393,7 @@ public class PrescribingApp {
     }
 
     // EFFECTS: prints out the names of the drugs
-    // used for treatment for the given condition
+    //          used for treatment for the given condition
     private void displayDrugs(Condition condition) {
         for (Drug drug : condition.getDrugs()) {
             System.out.println(drug.getName());
