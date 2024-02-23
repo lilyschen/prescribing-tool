@@ -49,6 +49,14 @@ public class JsonReaderTest {
             assertEquals("emily", patients.get(0).getName());
             assertEquals("acne", conditions.get(0).getName());
             assertEquals("cold sore", conditions.get(1).getName());
+            assertEquals(1, patients.get(0).getDrugs().size());
+            assertEquals("tretinoin", patients.get(0).getDrugs().get(0).getName());
+            assertEquals(1, conditions.get(0).getDrugs().size());
+            assertEquals("tretinoin", conditions.get(0).getDrugs().get(0).getName());
+            assertEquals("valacyclovir", conditions.get(1).getDrugs().get(0).getName());
+            assertEquals("dry skin", patients.get(0).getDrugs().get(0).getSideEffects().get(0));
+            assertEquals("sun sensitivity", patients.get(0).getDrugs().get(0).getSideEffects().get(1));
+
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
