@@ -1,11 +1,15 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents a patient with their name and
 // a list of drugs they are currently taking
-public class Patient {
+public class Patient implements Writable {
     private String name;        // name of the patient
     private List<Drug> drugs;   // a list of prescribed drugs
 
@@ -50,5 +54,21 @@ public class Patient {
 
     public List<Drug> getDrugs() {
         return drugs;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("drugs", drugsToJson());
+        return json;
+    }
+
+    public JSONArray drugsToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Drug d : drugs) {
+            jsonArray.put(d.toJson());
+        }
+        return jsonArray;
     }
 }

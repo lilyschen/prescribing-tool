@@ -1,11 +1,15 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents a condition with the condition name
 // and a list of drugs used for treatment of this condition
-public class Condition {
+public class Condition implements Writable {
     private String name;         // name of the condition
     private List<Drug> drugs;    // a list of drugs used for treatment
 
@@ -43,5 +47,21 @@ public class Condition {
 
     public List<Drug> getDrugs() {
         return drugs;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("drugs", drugsToJson());
+        return json;
+    }
+
+    public JSONArray drugsToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Drug d : drugs) {
+            jsonArray.put(d.toJson());
+        }
+        return jsonArray;
     }
 }

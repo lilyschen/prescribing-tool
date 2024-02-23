@@ -1,10 +1,14 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents a drug with a name
-public class Drug {
+public class Drug implements Writable {
     private String name;                  // name of the drug
     private List<String> sideEffects;     // a list of side effects
 
@@ -47,4 +51,21 @@ public class Drug {
     public List<String> getSideEffects() {
         return sideEffects;
     }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("side effects", sideEffectsToJson());
+        return json;
+    }
+
+    public JSONArray sideEffectsToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (String se : sideEffects) {
+            jsonArray.put(se);
+        }
+        return jsonArray;
+    }
+
 }

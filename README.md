@@ -36,4 +36,5 @@ I hope this project will increase the efficiency and decrease the workload of a 
 
 ## Note
 - followed Teller App format for Phase 1 of this project
+- modeled the JsonSerializationDemo format for Phase 2 of this project
 - condition & drug list from BC Pharmacy Association MACS Resources website

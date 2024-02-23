@@ -3,16 +3,26 @@ package ui;
 import model.Condition;
 import model.Drug;
 import model.Patient;
+import model.PrescribingTool;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 // Prescribing application
+// Note: modeled the JsonSerializationDemo example from Phase 2
 public class PrescribingApp {
-    private List<Condition> conditions;  // a list of conditions available to prescribe from
-    private List<Patient> patients;      // a list of patients
+//    private List<Condition> conditions;  // a list of conditions available to prescribe from
+//    private List<Patient> patients;      // a list of patients
+    private static final String JSON_STORE = "./data/prescribingtool.json";
     private Scanner input;
+    private PrescribingTool prescribingTool;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     private Condition acne;      // test condition
     private Condition headache;  // test condition
@@ -24,7 +34,14 @@ public class PrescribingApp {
     private Patient molly;       // test patient
 
     // EFFECTS: runs the prescribing application
-    public PrescribingApp() {
+    public PrescribingApp() throws FileNotFoundException {
+        input = new Scanner(System.in);
+        input.useDelimiter("\n");
+        prescribingTool = new PrescribingTool("My Prescribing Tool");
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+//        conditions = prescribingTool.getConditions();
+//        patients = prescribingTool.getPatients();
         runApp();
     }
 
@@ -34,7 +51,7 @@ public class PrescribingApp {
         boolean keepRunning = true;
         String command;
 
-        init();
+//        init();
 
         while (keepRunning) {
             displayMenu();
@@ -58,47 +75,53 @@ public class PrescribingApp {
             searchPatient();
         } else if (command.equals("d")) {
             openDatabase();
+        } else if (command.equals("s")) {
+            savePrescribingTool();
+        } else if (command.equals("l")) {
+            loadPrescribingTool();
         } else {
             System.out.println("Selection not valid.");
         }
     }
 
-    // MODIFIES: this
-    // EFFECTS: initializes patient list and condition list and test drugs, conditions, and patients
-    private void init() {
-        conditions = new ArrayList<>();
-        patients = new ArrayList<>();
-        input = new Scanner(System.in);
-        input.useDelimiter("\n");
-
-        acne = new Condition("acne");
-        headache = new Condition("headache");
-        tretinoin = new Drug("tretinoin");
-        adapalene = new Drug("adapalene");
-        acetaminophen = new Drug("acetaminophen");
-        ibuprofen = new Drug("ibuprofen");
-
-        conditions.add(acne);
-        conditions.add(headache);
-
-        acne.addDrug(tretinoin);
-        acne.addDrug(adapalene);
-        headache.addDrug(acetaminophen);
-        headache.addDrug(ibuprofen);
-
-        molly = new Patient("molly");
-        emily = new Patient("emily");
-        molly.addDrug(tretinoin);
-        emily.addDrug(acetaminophen);
-        patients.add(emily);
-        patients.add(molly);
-    }
+//    // MODIFIES: this
+//    // EFFECTS: initializes patient list and condition list and test drugs, conditions, and patients
+//    private void init() {
+//        conditions = new ArrayList<>();
+//        patients = new ArrayList<>();
+//        input = new Scanner(System.in);
+//        input.useDelimiter("\n");
+//
+//        acne = new Condition("acne");
+//        headache = new Condition("headache");
+//        tretinoin = new Drug("tretinoin");
+//        adapalene = new Drug("adapalene");
+//        acetaminophen = new Drug("acetaminophen");
+//        ibuprofen = new Drug("ibuprofen");
+//
+//        conditions.add(acne);
+//        conditions.add(headache);
+//
+//        acne.addDrug(tretinoin);
+//        acne.addDrug(adapalene);
+//        headache.addDrug(acetaminophen);
+//        headache.addDrug(ibuprofen);
+//
+//        molly = new Patient("molly");
+//        emily = new Patient("emily");
+//        molly.addDrug(tretinoin);
+//        emily.addDrug(acetaminophen);
+//        patients.add(emily);
+//        patients.add(molly);
+//    }
 
     // EFFECTS: displays menus of options to user
     private void displayMenu() {
         System.out.println("\nSelect from:");
         System.out.println("\tp -> find or create patient");
         System.out.println("\td -> view database");
+        System.out.println("\ts -> save updates to file");
+        System.out.println("\tl -> load last update from file");
         System.out.println("\tq -> quit App");
     }
 
@@ -230,7 +253,8 @@ public class PrescribingApp {
             String patName = input.next();
             patName = patName.toLowerCase();
             Patient newPat = new Patient(patName);
-            patients.add(newPat);
+//            patients.add(newPat);
+            prescribingTool.addPatient(newPat);
             return newPat;
         } else {
             return findPatient(selection);
@@ -240,7 +264,7 @@ public class PrescribingApp {
     // EFFECTS: returns a patient in patient list that matches given name
     //          returns null if not found
     private Patient findPatient(String name) {
-        for (Patient patient : patients) {
+        for (Patient patient : prescribingTool.getPatients()) {
             if (patient.getName().equals(name)) {
                 return patient;
             }
@@ -352,13 +376,30 @@ public class PrescribingApp {
     }
 
 
+//    // EFFECTS: prints out the number of patients taking the given drug
+//    //          if the given drug is not found, prints out not found
+//    private void displayNumTimesPrescribed(Drug drug) {
+//        if (drug != null) {
+//            int num = 0;
+//            for (Patient patient : prescribingTool.getPatients()) {
+//                if (patient.getDrugs().contains(drug)) {
+//                    num++;
+//                }
+//            }
+//            System.out.println("The number of patient(s) currently taking " + drug.getName() + " is " + num);
+//        } else {
+//            System.out.println("Drug not found.");
+//        }
+//    }
+
     // EFFECTS: prints out the number of patients taking the given drug
     //          if the given drug is not found, prints out not found
     private void displayNumTimesPrescribed(Drug drug) {
         if (drug != null) {
             int num = 0;
-            for (Patient patient : patients) {
-                if (patient.getDrugs().contains(drug)) {
+            String drugName = drug.getName();
+            for (Patient patient : prescribingTool.getPatients()) {
+                if (containsDrug(patient.getDrugs(), drugName)) {
                     num++;
                 }
             }
@@ -366,6 +407,15 @@ public class PrescribingApp {
         } else {
             System.out.println("Drug not found.");
         }
+    }
+
+    private boolean containsDrug(List<Drug> drugs, String name) {
+        for (Drug drug : drugs) {
+            if (drug.getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     // MODIFIES: this
@@ -378,7 +428,8 @@ public class PrescribingApp {
             String condName = input.next();
             condName = condName.toLowerCase();
             Condition newCond = new Condition(condName);
-            conditions.add(newCond);
+//            conditions.add(newCond);
+            prescribingTool.addCondition(newCond);
             return newCond;
         } else {
             return findCondition(selection);
@@ -387,7 +438,7 @@ public class PrescribingApp {
 
     // EFFECTS: prints out the names of the conditions in the condition list
     private void displayConditions() {
-        for (Condition condition : conditions) {
+        for (Condition condition : prescribingTool.getConditions()) {
             System.out.println(condition.getName());
         }
     }
@@ -403,11 +454,34 @@ public class PrescribingApp {
     // EFFECTS: returns a condition in condition list that matches given name
     //          returns null if not found
     private Condition findCondition(String name) {
-        for (Condition condition : conditions) {
+        for (Condition condition : prescribingTool.getConditions()) {
             if (condition.getName().equals(name)) {
                 return condition;
             }
         }
         return null;
+    }
+
+    // EFFECTS: saves the Prescribing Tool to file
+    private void savePrescribingTool() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(prescribingTool);
+            jsonWriter.close();
+            System.out.println("Saved all updates to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads Prescribing Tool from file
+    private void loadPrescribingTool() {
+        try {
+            prescribingTool = jsonReader.read();
+            System.out.println("Loaded " + prescribingTool.getName() + " from" + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 }
