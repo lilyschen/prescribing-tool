@@ -1,0 +1,32 @@
+{
+  "patients": [{
+    "drugs": [{
+      "name": "tretinoin",
+      "side effects": [
+        "dry skin",
+        "sun sensitivity"
+      ]
+    }],
+    "name": "emily"
+  }],
+  "name": "My Prescribing App",
+  "conditions": [
+    {
+      "drugs": [{
+        "name": "tretinoin",
+        "side effects": [
+          "dry skin",
+          "sun sensitivity"
+        ]
+      }],
+      "name": "acne"
+    },
+    {
+      "drugs": [{
+        "name": "valacyclovir",
+        "side effects": []
+      }],
+      "name": "cold sore"
+    }
+  ]
+}
