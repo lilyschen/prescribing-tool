@@ -57,6 +57,7 @@ public class JsonWriterTest {
             Drug acetaminophen = new Drug("acetaminophen");
             acne.addDrug(tretinoin);
             headache.addDrug(acetaminophen);
+            tretinoin.addSideEffect("dry skin");
             emily.addDrug(tretinoin);
             alex.addDrug(acetaminophen);
             pt.addCondition(acne);
@@ -85,6 +86,7 @@ public class JsonWriterTest {
             assertEquals("acetaminophen", patients.get(1).getDrugs().get(0).getName());
             assertEquals(1, conditions.get(0).getDrugs().size());
             assertEquals("tretinoin", conditions.get(0).getDrugs().get(0).getName());
+            assertEquals("dry skin", patients.get(0).getDrugs().get(0).getSideEffects().get(0));
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");
