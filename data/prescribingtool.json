@@ -1,0 +1,79 @@
+{
+    "patients": [
+        {
+            "drugs": [
+                {
+                    "name": "tretinoin",
+                    "side effects": [
+                        "dry skin",
+                        "sun sensitivity"
+                    ]
+                },
+                {
+                    "name": "acetaminophen",
+                    "side effects": ["liver damage"]
+                }
+            ],
+            "name": "emily"
+        },
+        {
+            "drugs": [
+                {
+                    "name": "benzoyl peroxide",
+                    "side effects": [
+                        "irritation",
+                        "sun sensitivity"
+                    ]
+                },
+                {
+                    "name": "ibuprofen",
+                    "side effects": [
+                        "upset stomach",
+                        "stomach bleeding",
+                        "dizziness"
+                    ]
+                }
+            ],
+            "name": "alex"
+        }
+    ],
+    "name": "My Prescribing Tool",
+    "conditions": [
+        {
+            "drugs": [
+                {
+                    "name": "tretinoin",
+                    "side effects": [
+                        "dry skin",
+                        "sun sensitivity"
+                    ]
+                },
+                {
+                    "name": "benzoyl peroxide",
+                    "side effects": [
+                        "irritation",
+                        "sun sensitivity"
+                    ]
+                }
+            ],
+            "name": "acne"
+        },
+        {
+            "drugs": [
+                {
+                    "name": "acetaminophen",
+                    "side effects": ["liver damage"]
+                },
+                {
+                    "name": "ibuprofen",
+                    "side effects": [
+                        "upset stomach",
+                        "stomach bleeding",
+                        "dizziness"
+                    ]
+                }
+            ],
+            "name": "headache"
+        }
+    ]
+}
