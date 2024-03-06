@@ -64,7 +64,8 @@ public class Patient implements Writable {
         return json;
     }
 
-    public JSONArray drugsToJson() {
+    // EFFECTS: returns drugs in this patient as a JSON array
+    private JSONArray drugsToJson() {
         JSONArray jsonArray = new JSONArray();
         for (Drug d : drugs) {
             jsonArray.put(d.toJson());

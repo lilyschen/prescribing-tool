@@ -7,7 +7,7 @@ import persistence.Writable;
 import java.util.ArrayList;
 import java.util.List;
 
-// Represents a drug with a name
+// Represents a drug with a name and a list of side effects
 public class Drug implements Writable {
     private String name;                  // name of the drug
     private List<String> sideEffects;     // a list of side effects
@@ -60,7 +60,8 @@ public class Drug implements Writable {
         return json;
     }
 
-    public JSONArray sideEffectsToJson() {
+    // EFFECTS: returns side effects in this drug as a JSON array
+    private JSONArray sideEffectsToJson() {
         JSONArray jsonArray = new JSONArray();
         for (String se : sideEffects) {
             jsonArray.put(se);

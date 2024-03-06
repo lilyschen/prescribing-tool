@@ -11,10 +11,9 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.stream.Stream;
 
-// Represents a reader that reads workroom from JSON data stored in file
+// Represents a reader that reads prescribing tool from JSON data stored in file
 // Note: modeled the JsonSerializationDemo example from Phase 2
 public class JsonReader {
     private String source;
@@ -24,7 +23,7 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads prescribing tool from file and returns it;
     // throws IOException if an error occurs reading data from file
     public PrescribingTool read() throws IOException {
         String jsonData = readFile(source);
@@ -43,7 +42,7 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses workroom from JSON object and returns it
+    // EFFECTS: parses prescribing tool from JSON object and returns it
     private PrescribingTool parsePrescribingTool(JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         PrescribingTool prescribingTool = new PrescribingTool(name);
@@ -53,7 +52,7 @@ public class JsonReader {
     }
 
     // MODIFIES: pt
-    // EFFECTS: parses conditions from JSON object and adds them to PrescribingTool
+    // EFFECTS: parses conditions from JSON object and adds them to prescribing tool
     private void addConditions(PrescribingTool pt, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("conditions");
         for (Object json : jsonArray) {
@@ -63,7 +62,7 @@ public class JsonReader {
     }
 
     // MODIFIES: pt
-    // EFFECTS: parses condition from JSON object and adds it to workroom
+    // EFFECTS: parses condition from JSON object and adds it to prescribing tool
     private void addCondition(PrescribingTool pt, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         JSONArray drugsArray = jsonObject.getJSONArray("drugs");
@@ -72,6 +71,9 @@ public class JsonReader {
         pt.addCondition(condition);
     }
 
+    // MODIFIES: pt
+    // EFFECTS: parses drugs from JSON Array and adds them to prescribing tool
+    //          under given condition
     private void addDrugsToCondition(Condition condition, JSONArray drugsArray) {
         for (Object json : drugsArray) {
             JSONObject nextDrug = (JSONObject) json;
@@ -84,7 +86,7 @@ public class JsonReader {
     }
 
     // MODIFIES: pt
-    // EFFECTS: parses conditions from JSON object and adds them to PrescribingTool
+    // EFFECTS: parses patients from JSON object and adds them to prescribing tool
     private void addPatients(PrescribingTool pt, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("patients");
         for (Object json : jsonArray) {
@@ -94,7 +96,7 @@ public class JsonReader {
     }
 
     // MODIFIES: pt
-    // EFFECTS: parses condition from JSON object and adds it to workroom
+    // EFFECTS: parses patient from JSON object and adds it to prescribing tool
     private void addPatient(PrescribingTool pt, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         JSONArray drugsArray = jsonObject.getJSONArray("drugs");
@@ -103,6 +105,9 @@ public class JsonReader {
         pt.addPatient(patient);
     }
 
+    // MODIFIES: pt
+    // EFFECTS: parses drugs from JSON Array and adds them to prescribing tool
+    //          under given patient
     private void addDrugsToPatient(Patient patient, JSONArray drugsArray) {
         for (Object json : drugsArray) {
             JSONObject nextDrug = (JSONObject) json;
@@ -114,6 +119,9 @@ public class JsonReader {
         }
     }
 
+    // MODIFIES: pt
+    // EFFECTS: parses side effects from JSON Array and adds them to prescribing tool
+    //          under given drug
     private void addSideEffectsToDrug(Drug drug, JSONArray sideEffectsArray) {
         for (Object json : sideEffectsArray) {
             String se = (String) json;

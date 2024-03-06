@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
-// Represents a writer that writes JSON representation of workroom to file
+// Represents a writer that writes JSON representation of prescribing tool to file
 // Note: modeled the JsonSerializationDemo example from Phase 2
 public class JsonWriter {
     private static final int TAB = 4;
@@ -27,7 +27,7 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of workroom to file
+    // EFFECTS: writes JSON representation of prescribing tool to file
     public void write(PrescribingTool pt) {
         JSONObject json = pt.toJson();
         saveToFile(json.toString(TAB));

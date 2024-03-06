@@ -5,7 +5,6 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 // Represents a PrescribingTool having a collection of conditions and patients
@@ -15,7 +14,8 @@ public class PrescribingTool implements Writable {
     private List<Condition> conditions;  // a list of conditions available to prescribe from
     private List<Patient> patients;      // a list of patients
 
-    // EFFECTS: constructs workroom with a name and empty list of thingies
+    // EFFECTS: constructs prescribing tool with a name,
+    //          an empty list of conditions and an empty list of patients
     public PrescribingTool(String name) {
         this.name = name;
         this.conditions = new ArrayList<>();
@@ -35,23 +35,23 @@ public class PrescribingTool implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds thingy to this workroom
+    // EFFECTS: adds condition to this prescribing tool
     public void addCondition(Condition condition) {
         conditions.add(condition);
     }
 
     // MODIFIES: this
-    // EFFECTS: adds thingy to this workroom
+    // EFFECTS: adds patient to this prescribing tool
     public void addPatient(Patient patient) {
         patients.add(patient);
     }
 
-    // EFFECTS: returns number of thingies in this workroom
+    // EFFECTS: returns number of conditions in this prescribing tool
     public int numConditions() {
         return conditions.size();
     }
 
-    // EFFECTS: returns number of thingies in this workroom
+    // EFFECTS: returns number of patients in this prescribing tool
     public int numPatients() {
         return patients.size();
     }
@@ -65,7 +65,7 @@ public class PrescribingTool implements Writable {
         return json;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    // EFFECTS: returns conditions in this prescribing tool as a JSON array
     private JSONArray conditionsToJson() {
         JSONArray jsonArray = new JSONArray();
 
@@ -76,7 +76,7 @@ public class PrescribingTool implements Writable {
         return jsonArray;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    // EFFECTS: returns patients in this prescribing tool as a JSON array
     private JSONArray patientsToJson() {
         JSONArray jsonArray = new JSONArray();
 

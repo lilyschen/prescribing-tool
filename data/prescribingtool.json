@@ -35,6 +35,29 @@
                 }
             ],
             "name": "alex"
+        },
+        {
+            "drugs": [
+                {
+                    "name": "nitrofurantoin",
+                    "side effects": [
+                        "nausea",
+                        "vomiting"
+                    ]
+                },
+                {
+                    "name": "acetaminophen",
+                    "side effects": ["liver damage"]
+                },
+                {
+                    "name": "tretinoin",
+                    "side effects": [
+                        "dry skin",
+                        "sun sensitivity"
+                    ]
+                }
+            ],
+            "name": "molly"
         }
     ],
     "name": "My Prescribing Tool",
@@ -71,9 +94,42 @@
                         "stomach bleeding",
                         "dizziness"
                     ]
+                },
+                {
+                    "name": "naproxen",
+                    "side effects": [
+                        "upset stomach",
+                        "stomach bleeding"
+                    ]
                 }
             ],
             "name": "headache"
+        },
+        {
+            "drugs": [
+                {
+                    "name": "nitrofurantoin",
+                    "side effects": [
+                        "nausea",
+                        "vomiting"
+                    ]
+                },
+                {
+                    "name": "fosfomycin",
+                    "side effects": [
+                        "diarrhea",
+                        "nausea"
+                    ]
+                },
+                {
+                    "name": "trimethoprim",
+                    "side effects": [
+                        "rash",
+                        "itchiness"
+                    ]
+                }
+            ],
+            "name": "urinary tract infection"
         }
     ]
 }

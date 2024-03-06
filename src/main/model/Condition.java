@@ -57,7 +57,8 @@ public class Condition implements Writable {
         return json;
     }
 
-    public JSONArray drugsToJson() {
+    // EFFECTS: returns drugs in this condition as a JSON array
+    private JSONArray drugsToJson() {
         JSONArray jsonArray = new JSONArray();
         for (Drug d : drugs) {
             jsonArray.put(d.toJson());

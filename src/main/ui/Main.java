@@ -8,7 +8,7 @@ public class Main {
         try {
             new PrescribingApp();
         } catch (FileNotFoundException e) {
-            System.out.println("Cannot run application - file not found");
+            System.out.println("Cannot run application: file not found");
         }
     }
 }
