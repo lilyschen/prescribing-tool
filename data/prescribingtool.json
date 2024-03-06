@@ -58,6 +58,22 @@
                 }
             ],
             "name": "molly"
+        },
+        {
+            "drugs": [
+                {
+                    "name": "tretinoin",
+                    "side effects": [
+                        "dry skin",
+                        "sun sensitivity"
+                    ]
+                },
+                {
+                    "name": "zinc sulfate-pramoxine",
+                    "side effects": []
+                }
+            ],
+            "name": "bob"
         }
     ],
     "name": "My Prescribing Tool",
@@ -130,6 +146,13 @@
                 }
             ],
             "name": "urinary tract infection"
+        },
+        {
+            "drugs": [{
+                "name": "zinc sulfate-pramoxine",
+                "side effects": []
+            }],
+            "name": "hemorrhoids"
         }
     ]
 }

@@ -56,6 +56,7 @@ public class Patient implements Writable {
         return drugs;
     }
 
+    // Referenced Json Serialization Demo
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -65,6 +66,7 @@ public class Patient implements Writable {
     }
 
     // EFFECTS: returns drugs in this patient as a JSON array
+    // Referenced Json Serialization Demo
     private JSONArray drugsToJson() {
         JSONArray jsonArray = new JSONArray();
         for (Drug d : drugs) {
