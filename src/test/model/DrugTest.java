@@ -60,4 +60,17 @@ public class DrugTest {
         assertEquals("vomiting, diarrhea, sun sensitivity", drug.displaySideEffects());
     }
 
+    @Test
+    void testToJson() {
+        drug.addSideEffect("se1");
+        drug.addSideEffect("se2");
+        drug.addSideEffect("se3");
+
+        String expectedJson =
+                "{\"name\":\"test drug\",\"side effects\":[\"se1\",\"se2\",\"se3\"]}";
+        String actualJson = drug.toJson().toString();
+
+        assertEquals(expectedJson, actualJson);
+    }
+
 }

@@ -64,4 +64,17 @@ class ConditionTest {
         assertEquals(drug2, condition.findDrug("drug2"));
         assertEquals(drug3, condition.findDrug("drug3"));
     }
+
+    @Test
+    void testToJson() {
+        Drug drug1 = new Drug("drug1");
+        drug1.addSideEffect("side effect");
+        condition.addDrug(drug1);
+
+        String expectedJson =
+                "{\"drugs\":[{\"name\":\"drug1\",\"side effects\":[\"side effect\"]}],\"name\":\"test condition\"}";
+        String actualJson = condition.toJson().toString();
+
+        assertEquals(expectedJson, actualJson);
+    }
 }
