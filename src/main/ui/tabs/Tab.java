@@ -9,7 +9,7 @@ import java.awt.*;
 public abstract class Tab extends JPanel {
     private final GUI controller;
 
-    //REQUIRES: SmartHomeUI controller that holds this tab
+    //REQUIRES: GUI controller that holds this tab
     public Tab(GUI controller) {
         this.controller = controller;
     }
@@ -23,7 +23,7 @@ public abstract class Tab extends JPanel {
         return p;
     }
 
-    //EFFECTS: returns the SmartHomeUI controller for this tab
+    //EFFECTS: returns the GUI controller for this tab
     public GUI getController() {
         return controller;
     }

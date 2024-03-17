@@ -37,7 +37,7 @@ public class GUI extends JFrame {
     }
 
     //MODIFIES: this
-    //EFFECTS: creates SmartHomeUI, loads SmartHome appliances, displays sidebar and tabs
+    //EFFECTS: creates GUI, loads Prescribing Tool, displays sidebar and tabs
     private GUI() {
         super("Prescribing Tool");
         setSize(WIDTH, HEIGHT);
@@ -56,13 +56,13 @@ public class GUI extends JFrame {
         setVisible(true);
     }
 
-    //EFFECTS: returns SmartHome object controlled by this UI
+    //EFFECTS: returns Prescribing Tool object controlled by this UI
     public PrescribingTool getPrescribingTool() {
         return prescribingTool;
     }
 
     //MODIFIES: this
-    //EFFECTS: adds home tab, settings tab and report tab to this UI
+    //EFFECTS: adds home tab, patient tab and database tab to this UI
     private void loadTabs() {
         JPanel homeTab = new HomeTab(this);
         JPanel patientTab = new PatientTab(this);

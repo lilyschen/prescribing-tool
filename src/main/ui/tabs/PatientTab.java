@@ -10,6 +10,7 @@ import java.awt.*;
 import java.util.List;
 import java.util.ArrayList;
 
+// referenced SmartHome application from CPSC210
 public class PatientTab extends Tab {
 
     private static final String INIT_QUESTION = "Would you like search an existing patient or add a new patient?";
