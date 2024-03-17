@@ -12,29 +12,33 @@ import java.util.ArrayList;
 
 public class PatientTab extends Tab {
 
-    private static final String INIT_GREETING = "Would you like search an existing patient or add a new patient?";
-    private JLabel greeting;
+    private static final String INIT_QUESTION = "Would you like search an existing patient or add a new patient?";
+    private JLabel question;
+    JButton b1;
+    JButton b2;
 
+    //EFFECTS: constructs a Patient tab for console with buttons and a question
     public PatientTab(GUI controller) {
         super(controller);
         setLayout(new GridLayout(3, 1));
 
-        placeGreeting();
-        placeHomeButtons();
+        b1 = new JButton("Search");
+        b2 = new JButton("Add");
+
+        placeQuestion();
+        placeButtons();
     }
 
-    //EFFECTS: creates greeting at top of console
-    private void placeGreeting() {
-        greeting = new JLabel(INIT_GREETING, JLabel.CENTER);
-        greeting.setSize(WIDTH, HEIGHT / 3);
-        this.add(greeting);
+    //EFFECTS: creates question at top of console
+    private void placeQuestion() {
+        question = new JLabel(INIT_QUESTION, JLabel.CENTER);
+        question.setSize(WIDTH, HEIGHT / 3);
+        this.add(question);
     }
 
-    //EFFECTS: creates Arrive and Leave buttons that change greeting message when clicked
-    private void placeHomeButtons() {
-        JButton b1 = new JButton("Search");
-        JButton b2 = new JButton("Add");
-
+    //MODIFIES: this
+    //EFFECTS: places Search and Add buttons that performs associated actions when clicked
+    private void placeButtons() {
         JPanel buttonRow = formatButtonRow(b1);
         buttonRow.add(b2);
         buttonRow.setSize(WIDTH, HEIGHT / 6);
@@ -48,7 +52,8 @@ public class PatientTab extends Tab {
                 JOptionPane.showMessageDialog(this, "You have selected " + selPat.getName());
                 modifyPatient(selPat);
             } else {
-                JOptionPane.showMessageDialog(this, "Patient not found", "Warning", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Patient not found", "Warning",
+                        JOptionPane.WARNING_MESSAGE);
             }
         });
 
@@ -80,49 +85,77 @@ public class PatientTab extends Tab {
     private void modifyPatient(Patient patient) {
         String[] options = {"Prescribe", "View Drug List"};
         int selection = JOptionPane.showOptionDialog(this,
-                "Please select:", "Patient", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+                "Please select an option:", "Patient", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
                 null, options, 0);
 
         if (selection == 0) {
             prescribe(patient);
         } else if (selection == 1) {
-//            displayPatientsDrugs(patient);
-//            modifyPatientsDrugs(patient);
+
+            if (patient.getDrugs().isEmpty()) {
+                JOptionPane.showMessageDialog(this,
+                        "This patient is currently not taking any medications.", "Drug List",
+                        JOptionPane.WARNING_MESSAGE);
+            } else {
+                StringBuilder drugNames = new StringBuilder("Medication List:");
+                for (Drug drug : patient.getDrugs()) {
+                    drugNames.append("\n" + drug.getName());
+                }
+                JOptionPane.showMessageDialog(this, drugNames,
+                        "Drug List", JOptionPane.PLAIN_MESSAGE);
+                removePatientsDrug(patient);
+            }
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: allows user to remove a drug that the given patient is taking
+    private void removePatientsDrug(Patient patient) {
+        int choice = JOptionPane.showOptionDialog(this,
+                "Would you like to delete a drug on this patient's drug list?",
+                "Patient's Drug List", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,
+                null, null, 0);
+
+        if (choice == 1) {
+            JOptionPane.showMessageDialog(this, "Click OK to close this window",
+                    "Patient's Drug List",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } else if (choice == 0) {
+            String[] drugs = getPatientsDrugList(patient).toArray(new String[0]);
+            JComboBox drugOptions = new JComboBox(drugs);
+            JOptionPane.showMessageDialog(this, drugOptions, "Select a drug to remove",
+                    JOptionPane.PLAIN_MESSAGE);
+            String drugName = (String) drugOptions.getSelectedItem();
+            Drug drug = patient.findDrugInPatientList(drugName);
+            patient.removeDrug(drug);
+            String message = drug.getName() + " has been successfully deleted";
+            JOptionPane.showMessageDialog(this, message, "Success!",
+                    JOptionPane.PLAIN_MESSAGE);
+        }
+
+    }
+
+    // MODIFIES: this
+    // EFFECTS: processes user commands to allows user to add/prescribe drug to the given patient
     private void prescribe(Patient patient) {
         String[] conditions = getConditionNamesList().toArray(new String[0]);
-        JComboBox options = new JComboBox(conditions);
-        JOptionPane.showMessageDialog(this, options, "Select a condition to prescribe from",
+        JComboBox conditionOptions = new JComboBox(conditions);
+        JOptionPane.showMessageDialog(this, conditionOptions, "Select a condition to prescribe from",
                 JOptionPane.PLAIN_MESSAGE);
+        String selection = (String) conditionOptions.getSelectedItem();
+        Condition selCond = findCondition(selection);
 
-
-
-//        String selection = input.next();
-//        selection = selection.toLowerCase();
-//
-//        Condition selCond = findCondition(selection);
-//
-//        if (selCond != null) {
-//            System.out.println("Here is a list of recommended medications:");
-//            displayDrugs(selCond);
-//            System.out.println("Enter the name of the drug you would like to prescribe.");
-//            String drugName = input.next();
-//            drugName = drugName.toLowerCase();
-//            Drug selDrug = selCond.findDrug(drugName);
-//
-//            if (selDrug != null) {
-//                patient.addDrug(selDrug);
-//                System.out.println(selDrug.getName() + " has been added to patient's drug list.");
-//                System.out.println("side effects: " + selDrug.displaySideEffects());
-//            } else {
-//                System.out.println("Selection not valid.");
-//            }
-//
-//        } else {
-//            System.out.println("Condition not found.");
-//        }
+        String[] drugs = getDrugsNamesList(selCond).toArray(new String[0]);
+        JComboBox drugOptions = new JComboBox(drugs);
+        JOptionPane.showMessageDialog(this, drugOptions, "Select a drug to prescribe to the patient",
+                JOptionPane.PLAIN_MESSAGE);
+        String drugName = (String) drugOptions.getSelectedItem();
+        Drug selDrug = selCond.findDrug(drugName);
+        patient.addDrug(selDrug);
+        String message = selDrug.getName() + " has been added to patient's drug list."
+                + "\nSide effects: " + selDrug.displaySideEffects();
+        JOptionPane.showMessageDialog(this, message, "Success!",
+                JOptionPane.PLAIN_MESSAGE);
     }
 
     // EFFECTS: returns the names of the conditions in the condition list
@@ -133,4 +166,35 @@ public class PatientTab extends Tab {
         }
         return names;
     }
+
+    // EFFECTS: prints out the names of the drugs
+    //          used for treatment for the given condition
+    private List<String> getDrugsNamesList(Condition condition) {
+        List<String> names = new ArrayList<>();
+        for (Drug drug : condition.getDrugs()) {
+            names.add(drug.getName());
+        }
+        return names;
+    }
+
+    // EFFECTS: prints out the names of the drugs in the patient's drug list
+    private List<String> getPatientsDrugList(Patient patient) {
+        List<String> names = new ArrayList<>();
+        for (Drug drug : patient.getDrugs()) {
+            names.add(drug.getName());
+        }
+        return names;
+    }
+
+    // EFFECTS: returns a condition in condition list that matches given name
+    //          returns null if not found
+    private Condition findCondition(String name) {
+        for (Condition condition : getController().getPrescribingTool().getConditions()) {
+            if (condition.getName().equals(name)) {
+                return condition;
+            }
+        }
+        return null;
+    }
+
 }
