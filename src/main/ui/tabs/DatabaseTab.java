@@ -134,6 +134,7 @@ public class DatabaseTab extends Tab {
                 JOptionPane.PLAIN_MESSAGE);
     }
 
+    // EFFECTS: returns a list of conditions in alphabetical order
     private List<Condition> alphabeticalOrderConditionList() {
         List<String> conditionNames = new ArrayList<>();
         for (Condition condition : getController().getPrescribingTool().getConditions()) {
@@ -176,7 +177,8 @@ public class DatabaseTab extends Tab {
                 JOptionPane.PLAIN_MESSAGE);
     }
 
-    //EFFECTS: displays all the drugs for the given condition and allows user to click to view side effects
+    //EFFECTS: displays all the drugs in alphabetical order for the given condition
+    //         and allows user to click to view side effects
     private void viewDrugsInAlphabeticalOrder(Condition condition) {
         JPanel drugPanel = new JPanel();
         drugPanel.setLayout(new BoxLayout(drugPanel, BoxLayout.Y_AXIS));
@@ -202,6 +204,7 @@ public class DatabaseTab extends Tab {
                 JOptionPane.PLAIN_MESSAGE);
     }
 
+    // EFFECTS: returns a drug list in alphabetical order for the given condition
     private List<Drug> alphabeticalOrderDrugList(Condition condition) {
         List<String> drugNames = new ArrayList<>();
         for (Drug drug : condition.getDrugs()) {
