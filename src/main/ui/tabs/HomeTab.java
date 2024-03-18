@@ -4,22 +4,30 @@ import ui.GUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 // referenced SmartHome application from CPSC210
 public class HomeTab extends Tab {
 
     private static final String INIT_GREETING = "Would you like to load previous data, save new updates, or quit?";
     private JLabel greeting;
+    private JLabel imageLabel;
+    private ImageIcon image;
 
     //EFFECTS: constructs a home tab for console with buttons and a greeting
     public HomeTab(GUI controller) {
         super(controller);
         setLayout(new GridLayout(3, 1));
 
+        // reference: https://pixabay.com/vectors/vitamins-tablets-pills-26622/
+        image = loadImage("vitaminsIcon.png");
+        imageLabel = new JLabel();
+        imageLabel.setIcon(image);
+        imageLabel.setHorizontalAlignment(JLabel.CENTER);
+        add(imageLabel);
+
         placeGreeting();
         placeHomeButtons();
+
     }
 
     //EFFECTS: creates greeting at top of console

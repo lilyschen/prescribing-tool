@@ -9,6 +9,8 @@ import ui.tabs.PatientTab;
 import ui.tabs.StatisticsTab;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -108,4 +110,5 @@ public class GUI extends JFrame {
             return "Unable to read from file: " + JSON_STORE;
         }
     }
+
 }

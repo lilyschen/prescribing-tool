@@ -17,6 +17,8 @@ public class PatientTab extends Tab {
     private JLabel question;
     JButton b1;
     JButton b2;
+    private JLabel imageLabel;
+    private ImageIcon image;
 
     //EFFECTS: constructs a Patient tab for console with buttons and a question
     public PatientTab(GUI controller) {
@@ -25,6 +27,13 @@ public class PatientTab extends Tab {
 
         b1 = new JButton("Search");
         b2 = new JButton("Add");
+
+        // reference: https://pixabay.com/vectors/drug-icon-pill-icon-medicine-icon-2316244/
+        image = loadImage("drugIcon.png");
+        imageLabel = new JLabel();
+        imageLabel.setIcon(image);
+        imageLabel.setHorizontalAlignment(JLabel.CENTER);
+        add(imageLabel);
 
         placeQuestion();
         placeButtons();
