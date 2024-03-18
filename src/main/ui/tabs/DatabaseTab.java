@@ -6,6 +6,8 @@ import ui.GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 // referenced SmartHome application from CPSC210
 public class DatabaseTab extends Tab {
@@ -63,7 +65,7 @@ public class DatabaseTab extends Tab {
         });
 
         b2.addActionListener(e -> {
-            viewDrugs();
+//            viewDrugs();
         });
 
         b3.addActionListener(e -> {
@@ -86,34 +88,87 @@ public class DatabaseTab extends Tab {
         this.add(buttonRow2);
     }
 
-    //EFFECTS: displays all conditions names
+//    //EFFECTS: displays all conditions names
+//    private void viewConditions() {
+//        StringBuilder conditionNames = new StringBuilder("Conditions:");
+//        for (Condition condition : getController().getPrescribingTool().getConditions()) {
+//            conditionNames.append("\n" + condition.getName());
+//        }
+//        JOptionPane.showMessageDialog(this, conditionNames,
+//                "View Conditions", JOptionPane.PLAIN_MESSAGE);
+//    }
+
     private void viewConditions() {
-        StringBuilder conditionNames = new StringBuilder("Conditions:");
+        JPanel conditionPanel = new JPanel();
+        conditionPanel.setLayout(new BoxLayout(conditionPanel, BoxLayout.Y_AXIS));
+
         for (Condition condition : getController().getPrescribingTool().getConditions()) {
-            conditionNames.append("\n" + condition.getName());
+            JLabel label = new JLabel(condition.getName());
+            label.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            label.addMouseListener(new MouseAdapter() {
+
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    viewDrugs(condition);
+                }
+
+            });
+            conditionPanel.add(label);
         }
-        JOptionPane.showMessageDialog(this, conditionNames,
-                "View Conditions", JOptionPane.PLAIN_MESSAGE);
+
+        JScrollPane scrollPane = new JScrollPane(conditionPanel);
+
+        JOptionPane.showMessageDialog(this, scrollPane, "View Conditions", JOptionPane.PLAIN_MESSAGE);
     }
 
-    //EFFECTS: lets user select a condition and displays all drug names for
-    //         the selected condition
-    private void viewDrugs() {
-        String[] conditions = getConditionNamesList().toArray(new String[0]);
-        JComboBox conditionOptions = new JComboBox(conditions);
-        JOptionPane.showMessageDialog(this, conditionOptions,
-                "Select a condition to its view drug list",
+
+    private void viewDrugs(Condition condition) {
+        JPanel drugPanel = new JPanel();
+        drugPanel.setLayout(new BoxLayout(drugPanel, BoxLayout.Y_AXIS));
+
+        for (Drug drug : condition.getDrugs()) {
+            JLabel label = new JLabel(drug.getName());
+            label.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            label.addMouseListener(new MouseAdapter() {
+
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    viewSideEffects(drug);
+                }
+
+            });
+            drugPanel.add(label);
+        }
+
+        JScrollPane scrollPane = new JScrollPane(drugPanel);
+
+        JOptionPane.showMessageDialog(this, scrollPane, "Drug therapy for " + condition.getName(),
                 JOptionPane.PLAIN_MESSAGE);
-        String selection = (String) conditionOptions.getSelectedItem();
-        Condition selCond = findCondition(selection);
-
-        StringBuilder drugNames = new StringBuilder("Drug List:");
-        for (Drug drug : selCond.getDrugs()) {
-            drugNames.append("\n" + drug.getName());
-        }
-        JOptionPane.showMessageDialog(this, drugNames,
-                "Drug List", JOptionPane.PLAIN_MESSAGE);
     }
+
+    private void viewSideEffects(Drug drug) {
+
+    }
+
+
+//    //EFFECTS: lets user select a condition and displays all drug names for
+//    //         the selected condition
+//    private void viewDrugs() {
+//        String[] conditions = getConditionNamesList().toArray(new String[0]);
+//        JComboBox conditionOptions = new JComboBox(conditions);
+//        JOptionPane.showMessageDialog(this, conditionOptions,
+//                "Select a condition to its view drug list",
+//                JOptionPane.PLAIN_MESSAGE);
+//        String selection = (String) conditionOptions.getSelectedItem();
+//        Condition selCond = findCondition(selection);
+//
+//        StringBuilder drugNames = new StringBuilder("Drug List:");
+//        for (Drug drug : selCond.getDrugs()) {
+//            drugNames.append("\n" + drug.getName());
+//        }
+//        JOptionPane.showMessageDialog(this, drugNames,
+//                "Drug List", JOptionPane.PLAIN_MESSAGE);
+//    }
 
     // EFFECTS: lets user select a drug and displays all side effects of the
     //          selected drug
