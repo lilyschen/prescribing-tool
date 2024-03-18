@@ -159,15 +159,6 @@ public class PatientTab extends Tab {
                 JOptionPane.PLAIN_MESSAGE);
     }
 
-    // EFFECTS: returns the names of the conditions in the condition list
-    private List<String> getConditionNamesList() {
-        List<String> names = new ArrayList<>();
-        for (Condition condition : getController().getPrescribingTool().getConditions()) {
-            names.add(condition.getName());
-        }
-        return names;
-    }
-
     // EFFECTS: prints out the names of the drugs
     //          used for treatment for the given condition
     private List<String> getDrugsNamesList(Condition condition) {
@@ -185,17 +176,6 @@ public class PatientTab extends Tab {
             names.add(drug.getName());
         }
         return names;
-    }
-
-    // EFFECTS: returns a condition in condition list that matches given name
-    //          returns null if not found
-    private Condition findCondition(String name) {
-        for (Condition condition : getController().getPrescribingTool().getConditions()) {
-            if (condition.getName().equals(name)) {
-                return condition;
-            }
-        }
-        return null;
     }
 
 }

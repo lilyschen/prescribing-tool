@@ -1,9 +1,12 @@
 package ui.tabs;
 
+import model.Condition;
 import ui.GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 // referenced SmartHome application from CPSC210
 public abstract class Tab extends JPanel {
@@ -26,5 +29,25 @@ public abstract class Tab extends JPanel {
     //EFFECTS: returns the GUI controller for this tab
     public GUI getController() {
         return controller;
+    }
+
+    // EFFECTS: returns the names of the conditions in the condition list
+    protected List<String> getConditionNamesList() {
+        List<String> names = new ArrayList<>();
+        for (Condition condition : getController().getPrescribingTool().getConditions()) {
+            names.add(condition.getName());
+        }
+        return names;
+    }
+
+    // EFFECTS: returns a condition in condition list that matches given name
+    //          returns null if not found
+    protected Condition findCondition(String name) {
+        for (Condition condition : getController().getPrescribingTool().getConditions()) {
+            if (condition.getName().equals(name)) {
+                return condition;
+            }
+        }
+        return null;
     }
 }
