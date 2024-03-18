@@ -117,11 +117,7 @@ public class PatientTab extends Tab {
                 "Patient's Drug List", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,
                 null, null, 0);
 
-        if (choice == 1) {
-            JOptionPane.showMessageDialog(this, "Click OK to close this window",
-                    "Patient's Drug List",
-                    JOptionPane.INFORMATION_MESSAGE);
-        } else if (choice == 0) {
+        if (choice == 0) {
             String[] drugs = getPatientsDrugList(patient).toArray(new String[0]);
             JComboBox drugOptions = new JComboBox(drugs);
             JOptionPane.showMessageDialog(this, drugOptions, "Select a drug to remove",
@@ -157,16 +153,6 @@ public class PatientTab extends Tab {
                 + "\nSide effects: " + selDrug.displaySideEffects();
         JOptionPane.showMessageDialog(this, message, "Success!",
                 JOptionPane.PLAIN_MESSAGE);
-    }
-
-    // EFFECTS: prints out the names of the drugs
-    //          used for treatment for the given condition
-    private List<String> getDrugsNamesList(Condition condition) {
-        List<String> names = new ArrayList<>();
-        for (Drug drug : condition.getDrugs()) {
-            names.add(drug.getName());
-        }
-        return names;
     }
 
     // EFFECTS: prints out the names of the drugs in the patient's drug list

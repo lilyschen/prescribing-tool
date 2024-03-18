@@ -1,6 +1,7 @@
 package ui.tabs;
 
 import model.Condition;
+import model.Drug;
 import ui.GUI;
 
 import javax.swing.*;
@@ -49,5 +50,15 @@ public abstract class Tab extends JPanel {
             }
         }
         return null;
+    }
+
+    // EFFECTS: prints out the names of the drugs
+    //          used for treatment for the given condition
+    protected List<String> getDrugsNamesList(Condition condition) {
+        List<String> names = new ArrayList<>();
+        for (Drug drug : condition.getDrugs()) {
+            names.add(drug.getName());
+        }
+        return names;
     }
 }
