@@ -6,6 +6,7 @@ import persistence.JsonWriter;
 import ui.tabs.DatabaseTab;
 import ui.tabs.HomeTab;
 import ui.tabs.PatientTab;
+import ui.tabs.StatisticsTab;
 
 import javax.swing.*;
 import java.io.FileNotFoundException;
@@ -16,6 +17,7 @@ public class GUI extends JFrame {
     public static final int HOME_TAB_INDEX = 0;
     public static final int PATIENT_TAB_INDEX = 1;
     public static final int DATABASE_TAB_INDEX = 2;
+    public static final int STATISTICS_TAB_INDEX = 3;
 
     public static final int WIDTH = 600;
     public static final int HEIGHT = 400;
@@ -67,6 +69,7 @@ public class GUI extends JFrame {
         JPanel homeTab = new HomeTab(this);
         JPanel patientTab = new PatientTab(this);
         JPanel databaseTab = new DatabaseTab(this);
+        JPanel statisticsTab = new StatisticsTab(this);
 
         sidebar.add(homeTab, HOME_TAB_INDEX);
         sidebar.setTitleAt(HOME_TAB_INDEX, "Home");
@@ -74,6 +77,8 @@ public class GUI extends JFrame {
         sidebar.setTitleAt(PATIENT_TAB_INDEX, "Patient");
         sidebar.add(databaseTab, DATABASE_TAB_INDEX);
         sidebar.setTitleAt(DATABASE_TAB_INDEX, "Database");
+        sidebar.add(statisticsTab,STATISTICS_TAB_INDEX);
+        sidebar.setTitleAt(STATISTICS_TAB_INDEX, "Statistics");
     }
 
     //EFFECTS: returns sidebar of this UI
