@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 // referenced SmartHome application from CPSC210
 public class DatabaseTab extends Tab {
@@ -18,6 +21,7 @@ public class DatabaseTab extends Tab {
     JButton b2;
     JButton b3;
     JButton b4;
+    JButton b5;
     JPanel buttonRow1;
     JPanel buttonRow2;
 
@@ -30,8 +34,10 @@ public class DatabaseTab extends Tab {
         b2 = new JButton("Add new Condition");
         b3 = new JButton("Add new Drug");
         b4 = new JButton("Add new Side Effect");
+        b5 = new JButton("View Conditions in alphabetical order");
 
         buttonRow1 = formatButtonRow(b1);
+        buttonRow1.add(b5);
         buttonRow1.setSize(WIDTH, HEIGHT / 6);
 
         buttonRow2 = formatButtonRow(b2);
@@ -70,6 +76,10 @@ public class DatabaseTab extends Tab {
             addSideEffect();
         });
 
+        b5.addActionListener(e -> {
+            viewConditionsInAlphabeticalOrder();
+        });
+
         this.add(buttonRow1);
         this.add(buttonRow2);
     }
@@ -99,6 +109,47 @@ public class DatabaseTab extends Tab {
                 JOptionPane.PLAIN_MESSAGE);
     }
 
+    //EFFECTS: displays all the conditions in alphabetical order and allows user to click to view drugs
+    private void viewConditionsInAlphabeticalOrder() {
+        JPanel conditionPanel = new JPanel();
+        conditionPanel.setLayout(new BoxLayout(conditionPanel, BoxLayout.Y_AXIS));
+
+        for (Condition condition : alphabeticalOrderConditionList()) {
+            JLabel label = new JLabel(condition.getName());
+            label.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            label.addMouseListener(new MouseAdapter() {
+
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    viewDrugsInAlphabeticalOrder(condition);
+                }
+
+            });
+            conditionPanel.add(label);
+        }
+
+        JScrollPane scrollPane = new JScrollPane(conditionPanel);
+
+        JOptionPane.showMessageDialog(this, scrollPane, "View Conditions",
+                JOptionPane.PLAIN_MESSAGE);
+    }
+
+    private List<Condition> alphabeticalOrderConditionList() {
+        List<String> conditionNames = new ArrayList<>();
+        for (Condition condition : getController().getPrescribingTool().getConditions()) {
+            conditionNames.add(condition.getName());
+        }
+        Collections.sort(conditionNames);
+        List<Condition> conditions = new ArrayList<>();
+        for (String conditionName : conditionNames) {
+            Condition condition = findCondition(conditionName);
+            if (condition != null) {
+                conditions.add(condition);
+            }
+        }
+        return conditions;
+    }
+
     //EFFECTS: displays all the drugs for the given condition and allows user to click to view side effects
     private void viewDrugs(Condition condition) {
         JPanel drugPanel = new JPanel();
@@ -123,6 +174,48 @@ public class DatabaseTab extends Tab {
         JOptionPane.showMessageDialog(this, scrollPane,
                 "Drug therapy for " + condition.getName() + ":",
                 JOptionPane.PLAIN_MESSAGE);
+    }
+
+    //EFFECTS: displays all the drugs for the given condition and allows user to click to view side effects
+    private void viewDrugsInAlphabeticalOrder(Condition condition) {
+        JPanel drugPanel = new JPanel();
+        drugPanel.setLayout(new BoxLayout(drugPanel, BoxLayout.Y_AXIS));
+
+        for (Drug drug : alphabeticalOrderDrugList(condition)) {
+            JLabel label = new JLabel(drug.getName());
+            label.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            label.addMouseListener(new MouseAdapter() {
+
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    viewSideEffects(drug);
+                }
+
+            });
+            drugPanel.add(label);
+        }
+
+        JScrollPane scrollPane = new JScrollPane(drugPanel);
+
+        JOptionPane.showMessageDialog(this, scrollPane,
+                "Drug therapy for " + condition.getName() + ":",
+                JOptionPane.PLAIN_MESSAGE);
+    }
+
+    private List<Drug> alphabeticalOrderDrugList(Condition condition) {
+        List<String> drugNames = new ArrayList<>();
+        for (Drug drug : condition.getDrugs()) {
+            drugNames.add(drug.getName());
+        }
+        Collections.sort(drugNames);
+        List<Drug> drugs = new ArrayList<>();
+        for (String drugName : drugNames) {
+            Drug drug = condition.findDrug(drugName);
+            if (drug != null) {
+                drugs.add(drug);
+            }
+        }
+        return drugs;
     }
 
     // EFFECTS: displays all side effects of the given drug
