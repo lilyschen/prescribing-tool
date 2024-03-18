@@ -18,9 +18,7 @@ public class DatabaseTab extends Tab {
     JButton b2;
     JButton b3;
     JButton b4;
-    JButton b5;
-    JButton b6;
-    JPanel buttonRow;
+    JPanel buttonRow1;
     JPanel buttonRow2;
 
     //EFFECTS: constructs a Database tab for console with buttons and a question
@@ -29,21 +27,17 @@ public class DatabaseTab extends Tab {
         setLayout(new GridLayout(3, 1));
 
         b1 = new JButton("View Conditions");
-        b2 = new JButton("View Drugs");
-        b3 = new JButton("View Side Effects");
-        b4 = new JButton("Add new Condition");
-        b5 = new JButton("Add new Drug");
-        b6 = new JButton("Add new Side Effect");
+        b2 = new JButton("Add new Condition");
+        b3 = new JButton("Add new Drug");
+        b4 = new JButton("Add new Side Effect");
 
-        buttonRow = formatButtonRow(b1);
-        buttonRow.add(b2);
-        buttonRow.add(b3);
-        buttonRow.setSize(WIDTH, HEIGHT / 6);
+        buttonRow1 = formatButtonRow(b1);
+        buttonRow1.setSize(WIDTH, HEIGHT / 6);
 
-        buttonRow2 = formatButtonRow(b4);
-        buttonRow2.add(b5);
-        buttonRow2.add(b6);
-        buttonRow.setSize(WIDTH, HEIGHT / 6);
+        buttonRow2 = formatButtonRow(b2);
+        buttonRow2.add(b3);
+        buttonRow2.add(b4);
+        buttonRow1.setSize(WIDTH, HEIGHT / 6);
 
         placeQuestion();
         placeButtons();
@@ -65,39 +59,22 @@ public class DatabaseTab extends Tab {
         });
 
         b2.addActionListener(e -> {
-//            viewDrugs();
-        });
-
-        b3.addActionListener(e -> {
-            viewSideEffects();
-        });
-
-        b4.addActionListener(e -> {
             addCondition();
         });
 
-        b5.addActionListener(e -> {
+        b3.addActionListener(e -> {
             addDrug();
         });
 
-        b6.addActionListener(e -> {
+        b4.addActionListener(e -> {
             addSideEffect();
         });
 
-        this.add(buttonRow);
+        this.add(buttonRow1);
         this.add(buttonRow2);
     }
 
-//    //EFFECTS: displays all conditions names
-//    private void viewConditions() {
-//        StringBuilder conditionNames = new StringBuilder("Conditions:");
-//        for (Condition condition : getController().getPrescribingTool().getConditions()) {
-//            conditionNames.append("\n" + condition.getName());
-//        }
-//        JOptionPane.showMessageDialog(this, conditionNames,
-//                "View Conditions", JOptionPane.PLAIN_MESSAGE);
-//    }
-
+    //EFFECTS: displays all the conditions and allows user to click to view drugs
     private void viewConditions() {
         JPanel conditionPanel = new JPanel();
         conditionPanel.setLayout(new BoxLayout(conditionPanel, BoxLayout.Y_AXIS));
@@ -118,10 +95,11 @@ public class DatabaseTab extends Tab {
 
         JScrollPane scrollPane = new JScrollPane(conditionPanel);
 
-        JOptionPane.showMessageDialog(this, scrollPane, "View Conditions", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(this, scrollPane, "View Conditions",
+                JOptionPane.PLAIN_MESSAGE);
     }
 
-
+    //EFFECTS: displays all the drugs for the given condition and allows user to click to view side effects
     private void viewDrugs(Condition condition) {
         JPanel drugPanel = new JPanel();
         drugPanel.setLayout(new BoxLayout(drugPanel, BoxLayout.Y_AXIS));
@@ -142,59 +120,25 @@ public class DatabaseTab extends Tab {
 
         JScrollPane scrollPane = new JScrollPane(drugPanel);
 
-        JOptionPane.showMessageDialog(this, scrollPane, "Drug therapy for " + condition.getName(),
+        JOptionPane.showMessageDialog(this, scrollPane,
+                "Drug therapy for " + condition.getName() + ":",
                 JOptionPane.PLAIN_MESSAGE);
     }
 
+    // EFFECTS: displays all side effects of the given drug
     private void viewSideEffects(Drug drug) {
+        JPanel sideEffectPanel = new JPanel();
+        sideEffectPanel.setLayout(new BoxLayout(sideEffectPanel, BoxLayout.Y_AXIS));
 
-    }
-
-
-//    //EFFECTS: lets user select a condition and displays all drug names for
-//    //         the selected condition
-//    private void viewDrugs() {
-//        String[] conditions = getConditionNamesList().toArray(new String[0]);
-//        JComboBox conditionOptions = new JComboBox(conditions);
-//        JOptionPane.showMessageDialog(this, conditionOptions,
-//                "Select a condition to its view drug list",
-//                JOptionPane.PLAIN_MESSAGE);
-//        String selection = (String) conditionOptions.getSelectedItem();
-//        Condition selCond = findCondition(selection);
-//
-//        StringBuilder drugNames = new StringBuilder("Drug List:");
-//        for (Drug drug : selCond.getDrugs()) {
-//            drugNames.append("\n" + drug.getName());
-//        }
-//        JOptionPane.showMessageDialog(this, drugNames,
-//                "Drug List", JOptionPane.PLAIN_MESSAGE);
-//    }
-
-    // EFFECTS: lets user select a drug and displays all side effects of the
-    //          selected drug
-    private void viewSideEffects() {
-        String[] conditions = getConditionNamesList().toArray(new String[0]);
-        JComboBox conditionOptions = new JComboBox(conditions);
-        JOptionPane.showMessageDialog(this, conditionOptions,
-                "Select a condition to its view drug list",
-                JOptionPane.PLAIN_MESSAGE);
-        String selection = (String) conditionOptions.getSelectedItem();
-        Condition selCond = findCondition(selection);
-
-        String[] drugs = getDrugsNamesList(selCond).toArray(new String[0]);
-        JComboBox drugOptions = new JComboBox(drugs);
-        JOptionPane.showMessageDialog(this, drugOptions,
-                "Select a drug to view its side effects",
-                JOptionPane.PLAIN_MESSAGE);
-        String chosen = (String) drugOptions.getSelectedItem();
-        Drug selDrug = selCond.findDrug(chosen);
-
-        StringBuilder sideEffects = new StringBuilder("Side effects for " + chosen + ":");
-        for (String se : selDrug.getSideEffects()) {
-            sideEffects.append("\n" + se);
+        for (String sideEffect : drug.getSideEffects()) {
+            JLabel label = new JLabel(sideEffect);
+            sideEffectPanel.add(label);
         }
-        JOptionPane.showMessageDialog(this, sideEffects,
-                "View side effects - " + chosen, JOptionPane.PLAIN_MESSAGE);
+
+        JScrollPane scrollPane = new JScrollPane(sideEffectPanel);
+
+        JOptionPane.showMessageDialog(this, scrollPane, "Side effects of " + drug.getName() + ":",
+                JOptionPane.PLAIN_MESSAGE);
     }
 
     // MODIFIES: this
