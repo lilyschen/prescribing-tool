@@ -95,7 +95,8 @@ public class PatientTab extends Tab {
     private void modifyPatient(Patient patient) {
         String[] options = {"Prescribe", "View Drug List"};
         int selection = JOptionPane.showOptionDialog(this,
-                "Please select an option:", "Patient", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+                "Please select an option:", "Patient: " + patient.getName(),
+                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
                 null, options, 0);
 
         if (selection == 0) {
@@ -104,26 +105,35 @@ public class PatientTab extends Tab {
 
             if (patient.getDrugs().isEmpty()) {
                 JOptionPane.showMessageDialog(this,
-                        "This patient is currently not taking any medications.", "Drug List",
-                        JOptionPane.WARNING_MESSAGE);
+                        "This patient is currently not taking any medications.",
+                        "View patient: " + patient.getName(), JOptionPane.WARNING_MESSAGE);
             } else {
-                StringBuilder drugNames = new StringBuilder("Medication List:");
-                for (Drug drug : patient.getDrugs()) {
-                    drugNames.append("\n" + drug.getName());
-                }
-                JOptionPane.showMessageDialog(this, drugNames,
-                        "Drug List", JOptionPane.PLAIN_MESSAGE);
+                JTextArea textArea = new JTextArea();
+                textArea.setText(displayDrugList(patient));
+                textArea.setEditable(false);
+                JScrollPane scrollPane = new JScrollPane(textArea);
+                JOptionPane.showMessageDialog(this, scrollPane, "View patient: " + patient.getName(),
+                        JOptionPane.PLAIN_MESSAGE);
                 removePatientsDrug(patient);
             }
         }
+    }
+
+    // EFFECTS: returns a string of given patient's drugs
+    private String displayDrugList(Patient patient) {
+        StringBuilder drugNames = new StringBuilder("Medication List:");
+        for (Drug drug : patient.getDrugs()) {
+            drugNames.append("\n" + drug.getName());
+        }
+        return drugNames.toString();
     }
 
     // MODIFIES: this
     // EFFECTS: allows user to remove a drug that the given patient is taking
     private void removePatientsDrug(Patient patient) {
         int choice = JOptionPane.showOptionDialog(this,
-                "Would you like to delete a drug on this patient's drug list?",
-                "Patient's Drug List", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,
+                "Would you like to delete a drug on " + patient.getName() + "'s drug list?",
+                "Patient: " + patient.getName(), JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,
                 null, null, 0);
 
         if (choice == 0) {

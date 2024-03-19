@@ -67,6 +67,7 @@ public class StatisticsTab extends Tab {
                     String message = REPORT_GEN_MESSAGE + currTime;
                     reportMessage.setText(message);
                     reportText.setText(checkStat());
+                    reportText.setEditable(false);
                     reportPane.setViewportView(reportText);
                 }
             }
