@@ -37,4 +37,5 @@ I hope this project will increase the efficiency and decrease the workload of a 
 ## Note
 - followed Teller App format for Phase 1 of this project
 - modeled the JsonSerializationDemo format for Phase 2 of this project
+- for Phase 3 GUI: referenced SmartHome: https://github.students.cs.ubc.ca/CPSC210/LongFormProblemStarters
 - condition & drug list from BC Pharmacy Association MACS Resources website

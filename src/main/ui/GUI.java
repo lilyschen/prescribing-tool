@@ -14,7 +14,7 @@ import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-// Note: referenced SmartHome application from CPSC210
+// referenced SmartHome application from CPSC210: https://github.students.cs.ubc.ca/CPSC210/LongFormProblemStarters
 public class GUI extends JFrame {
     public static final int HOME_TAB_INDEX = 0;
     public static final int PATIENT_TAB_INDEX = 1;

@@ -62,7 +62,7 @@ public abstract class Tab extends JPanel {
         return names;
     }
 
-    // referenced RobustTrafficLights from CPSC 210
+    // referenced RobustTrafficLights from CPSC 210: https://github.students.cs.ubc.ca/CPSC210/C3-LectureLabSolution
     // MODIFIES: this
     // EFFECTS: loads image of given image name and returns the loaded ImageIcon
     protected ImageIcon loadImage(String fileName) {
