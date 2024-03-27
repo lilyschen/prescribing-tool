@@ -35,6 +35,15 @@ I hope this project will increase the efficiency and decrease the workload of a 
 - As a user, I want have the option to **save** all the new data added (new condition, drug, patient, etc) to file
 - As a user, I want have the option to **load** the previously saved data from file when I restart the application
 
+# Instructions for Grader
+- You can go to the Database tab to add new conditions, add new drugs to a condition, and add new side effects to a drug
+- You can go to the Database tab to view conditions in original order or in alphabetical order
+- You can go to the Patient tab to search an existing patient by entering the patient's name
+- You can go to the Patient tab to search a patient, view the patient's drug list, and delete drugs from the drug list
+- You can locate my visual component by looking at the Home tab & the Patient tab
+- You can save the state of my application by clicking the Save button in the Home tab
+- You can reload the state of my application by clicking the Load button in the Home tab
+
 ## Note
 - followed Teller App format for Phase 1 of this project
 - modeled the JsonSerializationDemo format for Phase 2 of this project
