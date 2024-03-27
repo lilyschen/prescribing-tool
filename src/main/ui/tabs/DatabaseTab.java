@@ -190,7 +190,7 @@ public class DatabaseTab extends Tab {
 
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    viewSideEffects(drug);
+                    viewSideEffectsInAlphabeticalOrder(drug);
                 }
 
             });
@@ -235,6 +235,32 @@ public class DatabaseTab extends Tab {
 
         JOptionPane.showMessageDialog(this, scrollPane, "Side effects of " + drug.getName() + ":",
                 JOptionPane.PLAIN_MESSAGE);
+    }
+
+    // EFFECTS: displays all side effects of the given drug in alphabetical order
+    private void viewSideEffectsInAlphabeticalOrder(Drug drug) {
+        JPanel sideEffectPanel = new JPanel();
+        sideEffectPanel.setLayout(new BoxLayout(sideEffectPanel, BoxLayout.Y_AXIS));
+
+        for (String sideEffect : alphabeticalOrderSideEffectList(drug)) {
+            JLabel label = new JLabel(sideEffect);
+            sideEffectPanel.add(label);
+        }
+
+        JScrollPane scrollPane = new JScrollPane(sideEffectPanel);
+
+        JOptionPane.showMessageDialog(this, scrollPane, "Side effects of " + drug.getName() + ":",
+                JOptionPane.PLAIN_MESSAGE);
+    }
+
+    // EFFECTS: returns a side effect list in alphabetical order for the given drug
+    private List<String> alphabeticalOrderSideEffectList(Drug drug) {
+        List<String> sideEffects = new ArrayList<>();
+        for (String se : drug.getSideEffects()) {
+            sideEffects.add(se);
+        }
+        Collections.sort(sideEffects);
+        return sideEffects;
     }
 
     // MODIFIES: this
