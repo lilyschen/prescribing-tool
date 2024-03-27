@@ -1,158 +1,216 @@
 {
-  "patients": [
-    {
-      "drugs": [
+    "patients": [
         {
-          "name": "tretinoin",
-          "side effects": [
-            "dry skin",
-            "sun sensitivity"
-          ]
+            "drugs": [
+                {
+                    "name": "tretinoin",
+                    "side effects": [
+                        "dry skin",
+                        "sun sensitivity"
+                    ]
+                },
+                {
+                    "name": "acetaminophen",
+                    "side effects": ["liver damage"]
+                }
+            ],
+            "name": "emily"
         },
         {
-          "name": "acetaminophen",
-          "side effects": ["liver damage"]
+            "drugs": [
+                {
+                    "name": "benzoyl peroxide",
+                    "side effects": [
+                        "irritation",
+                        "sun sensitivity"
+                    ]
+                },
+                {
+                    "name": "ibuprofen",
+                    "side effects": [
+                        "upset stomach",
+                        "stomach bleeding",
+                        "dizziness"
+                    ]
+                }
+            ],
+            "name": "alex"
+        },
+        {
+            "drugs": [
+                {
+                    "name": "nitrofurantoin",
+                    "side effects": [
+                        "nausea",
+                        "vomiting"
+                    ]
+                },
+                {
+                    "name": "acetaminophen",
+                    "side effects": ["liver damage"]
+                },
+                {
+                    "name": "tretinoin",
+                    "side effects": [
+                        "dry skin",
+                        "sun sensitivity"
+                    ]
+                }
+            ],
+            "name": "molly"
+        },
+        {
+            "drugs": [
+                {
+                    "name": "tretinoin",
+                    "side effects": [
+                        "dry skin",
+                        "sun sensitivity"
+                    ]
+                },
+                {
+                    "name": "zinc sulfate-pramoxine",
+                    "side effects": []
+                }
+            ],
+            "name": "bob"
         }
-      ],
-      "name": "emily"
-    },
-    {
-      "drugs": [
+    ],
+    "name": "My Prescribing Tool",
+    "conditions": [
         {
-          "name": "benzoyl peroxide",
-          "side effects": [
-            "irritation",
-            "sun sensitivity"
-          ]
+            "drugs": [
+                {
+                    "name": "tretinoin",
+                    "side effects": [
+                        "dry skin",
+                        "sun sensitivity"
+                    ]
+                },
+                {
+                    "name": "benzoyl peroxide",
+                    "side effects": [
+                        "irritation",
+                        "sun sensitivity"
+                    ]
+                }
+            ],
+            "name": "acne"
         },
         {
-          "name": "ibuprofen",
-          "side effects": [
-            "upset stomach",
-            "stomach bleeding",
-            "dizziness"
-          ]
+            "drugs": [
+                {
+                    "name": "acetaminophen",
+                    "side effects": ["liver damage"]
+                },
+                {
+                    "name": "ibuprofen",
+                    "side effects": [
+                        "upset stomach",
+                        "stomach bleeding",
+                        "dizziness"
+                    ]
+                },
+                {
+                    "name": "naproxen",
+                    "side effects": [
+                        "upset stomach",
+                        "stomach bleeding"
+                    ]
+                }
+            ],
+            "name": "headache"
+        },
+        {
+            "drugs": [
+                {
+                    "name": "nitrofurantoin",
+                    "side effects": [
+                        "nausea",
+                        "vomiting"
+                    ]
+                },
+                {
+                    "name": "fosfomycin",
+                    "side effects": [
+                        "diarrhea",
+                        "nausea"
+                    ]
+                },
+                {
+                    "name": "trimethoprim",
+                    "side effects": [
+                        "rash",
+                        "itchiness"
+                    ]
+                }
+            ],
+            "name": "urinary tract infection"
+        },
+        {
+            "drugs": [{
+                "name": "zinc sulfate-pramoxine",
+                "side effects": [
+                    "skin irritation",
+                    "dryness"
+                ]
+            }],
+            "name": "hemorrhoids"
+        },
+        {
+            "drugs": [
+                {
+                    "name": "fluconazole",
+                    "side effects": [
+                        "diarrhea",
+                        "nausea"
+                    ]
+                },
+                {
+                    "name": "clotrimazole",
+                    "side effects": [
+                        "skin irritation",
+                        "redness",
+                        "burning"
+                    ]
+                },
+                {
+                    "name": "miconazole",
+                    "side effects": [
+                        "skin irritation",
+                        "redness",
+                        "burning"
+                    ]
+                }
+            ],
+            "name": "yeast infection"
+        },
+        {
+            "drugs": [
+                {
+                    "name": "hydrocortisone",
+                    "side effects": [
+                        "skin irritation",
+                        "dryness"
+                    ]
+                },
+                {
+                    "name": "diphenhydramine",
+                    "side effects": [
+                        "drowsiness",
+                        "dizziness",
+                        "dry mouth"
+                    ]
+                },
+                {
+                    "name": "cetirizine",
+                    "side effects": [
+                        "dry mouth",
+                        "headache"
+                    ]
+                }
+            ],
+            "name": "hives"
         }
-      ],
-      "name": "alex"
-    },
-    {
-      "drugs": [
-        {
-          "name": "nitrofurantoin",
-          "side effects": [
-            "nausea",
-            "vomiting"
-          ]
-        },
-        {
-          "name": "acetaminophen",
-          "side effects": ["liver damage"]
-        },
-        {
-          "name": "tretinoin",
-          "side effects": [
-            "dry skin",
-            "sun sensitivity"
-          ]
-        }
-      ],
-      "name": "molly"
-    },
-    {
-      "drugs": [
-        {
-          "name": "tretinoin",
-          "side effects": [
-            "dry skin",
-            "sun sensitivity"
-          ]
-        },
-        {
-          "name": "zinc sulfate-pramoxine",
-          "side effects": []
-        }
-      ],
-      "name": "bob"
-    }
-  ],
-  "name": "My Prescribing Tool",
-  "conditions": [
-    {
-      "drugs": [
-        {
-          "name": "tretinoin",
-          "side effects": [
-            "dry skin",
-            "sun sensitivity"
-          ]
-        },
-        {
-          "name": "benzoyl peroxide",
-          "side effects": [
-            "irritation",
-            "sun sensitivity"
-          ]
-        }
-      ],
-      "name": "acne"
-    },
-    {
-      "drugs": [
-        {
-          "name": "acetaminophen",
-          "side effects": ["liver damage"]
-        },
-        {
-          "name": "ibuprofen",
-          "side effects": [
-            "upset stomach",
-            "stomach bleeding",
-            "dizziness"
-          ]
-        },
-        {
-          "name": "naproxen",
-          "side effects": [
-            "upset stomach",
-            "stomach bleeding"
-          ]
-        }
-      ],
-      "name": "headache"
-    },
-    {
-      "drugs": [
-        {
-          "name": "nitrofurantoin",
-          "side effects": [
-            "nausea",
-            "vomiting"
-          ]
-        },
-        {
-          "name": "fosfomycin",
-          "side effects": [
-            "diarrhea",
-            "nausea"
-          ]
-        },
-        {
-          "name": "trimethoprim",
-          "side effects": [
-            "rash",
-            "itchiness"
-          ]
-        }
-      ],
-      "name": "urinary tract infection"
-    },
-    {
-      "drugs": [{
-        "name": "zinc sulfate-pramoxine",
-        "side effects": []
-      }],
-      "name": "hemorrhoids"
-    }
-  ]
+    ]
 }

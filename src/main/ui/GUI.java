@@ -88,7 +88,7 @@ public class GUI extends JFrame {
             jsonWriter.open();
             jsonWriter.write(prescribingTool);
             jsonWriter.close();
-            return "Previous data has been loaded successfully!";
+            return "Your updates have been saved successfully!";
         } catch (FileNotFoundException e) {
             return "Unable to write to file: " + JSON_STORE;
         }
