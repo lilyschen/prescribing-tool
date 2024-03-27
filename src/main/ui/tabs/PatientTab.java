@@ -59,13 +59,7 @@ public class PatientTab extends Tab {
                 input = input.toLowerCase();
                 Patient selPat = findPatient(input);
 
-                if (selPat != null) {
-                    JOptionPane.showMessageDialog(this, "You have selected " + selPat.getName());
-                    modifyPatient(selPat);
-                } else {
-                    JOptionPane.showMessageDialog(this, "Patient not found", "Warning",
-                            JOptionPane.WARNING_MESSAGE);
-                }
+                processSelectedPatient(selPat);
             }
         });
 
@@ -80,6 +74,19 @@ public class PatientTab extends Tab {
         });
 
         this.add(buttonRow);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: process given patient; if found, allows user to modify patient;
+    //          otherwise, return patient not found message
+    private void processSelectedPatient(Patient selPat) {
+        if (selPat != null) {
+            JOptionPane.showMessageDialog(this, "You have selected " + selPat.getName());
+            modifyPatient(selPat);
+        } else {
+            JOptionPane.showMessageDialog(this, "Patient not found", "Warning",
+                    JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     // EFFECTS: returns a patient in patient list that matches given name
