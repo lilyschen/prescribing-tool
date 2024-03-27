@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 // referenced SmartHome application from CPSC210: https://github.students.cs.ubc.ca/CPSC210/LongFormProblemStarters
+// represents Prescribing Application GUI
 public class GUI extends JFrame {
     public static final int HOME_TAB_INDEX = 0;
     public static final int PATIENT_TAB_INDEX = 1;
@@ -30,12 +31,6 @@ public class GUI extends JFrame {
 
     public static void main(String[] args) {
         new GUI();
-
-//        try {
-//            new PrescribingApp();
-//        } catch (FileNotFoundException e) {
-//            System.out.println("Cannot run application: file not found");
-//        }
     }
 
     //MODIFIES: this
@@ -86,6 +81,7 @@ public class GUI extends JFrame {
         return sidebar;
     }
 
+    // MODIFIES: this
     // EFFECTS: saves the Prescribing Tool to file
     public String savePrescribingTool() {
         try {
@@ -108,5 +104,4 @@ public class GUI extends JFrame {
             return "Unable to read from file: " + JSON_STORE;
         }
     }
-
 }

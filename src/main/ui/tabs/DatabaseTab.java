@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 
 // referenced SmartHome application from CPSC210
+// represents Database Tab/Panel
 public class DatabaseTab extends Tab {
 
     private static final String INIT_QUESTION = "Select an option:";
@@ -25,6 +26,7 @@ public class DatabaseTab extends Tab {
     JPanel buttonRow1;
     JPanel buttonRow2;
 
+    //REQUIRES: GUI controller that holds this tab
     //EFFECTS: constructs a Database tab for console with buttons and a question
     public DatabaseTab(GUI controller) {
         super(controller);

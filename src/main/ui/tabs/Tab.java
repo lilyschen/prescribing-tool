@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // referenced SmartHome application from CPSC210
+// represents a Tab in GUI
 public abstract class Tab extends JPanel {
     private final GUI controller;
 
@@ -52,7 +53,7 @@ public abstract class Tab extends JPanel {
         return null;
     }
 
-    // EFFECTS: prints out the names of the drugs
+    // EFFECTS: returns the names of the drugs
     //          used for treatment for the given condition
     protected List<String> getDrugsNamesList(Condition condition) {
         List<String> names = new ArrayList<>();

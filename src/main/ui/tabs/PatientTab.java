@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 // referenced SmartHome application from CPSC210
+// represents Patient Tab/Panel
 public class PatientTab extends Tab {
 
     private static final String INIT_QUESTION = "Would you like search an existing patient or add a new patient?";
@@ -20,6 +21,7 @@ public class PatientTab extends Tab {
     private JLabel imageLabel;
     private ImageIcon image;
 
+    //REQUIRES: GUI controller that holds this tab
     //EFFECTS: constructs a Patient tab for console with buttons and a question
     public PatientTab(GUI controller) {
         super(controller);
@@ -77,7 +79,7 @@ public class PatientTab extends Tab {
     }
 
     // MODIFIES: this
-    // EFFECTS: process given patient; if found, allows user to modify patient;
+    // EFFECTS: processes given patient; if found, allows user to modify patient;
     //          otherwise, return patient not found message
     private void processSelectedPatient(Patient selPat) {
         if (selPat != null) {

@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 // referenced SmartHome application from CPSC210
+// represents Home Tab/Panel
 public class HomeTab extends Tab {
 
     private static final String INIT_GREETING = "Would you like to load previous data, save new updates, or quit?";
@@ -13,6 +14,7 @@ public class HomeTab extends Tab {
     private JLabel imageLabel;
     private ImageIcon image;
 
+    //REQUIRES: GUI controller that holds this tab
     //EFFECTS: constructs a home tab for console with buttons and a greeting
     public HomeTab(GUI controller) {
         super(controller);
