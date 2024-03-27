@@ -23,6 +23,7 @@ I hope this project will increase the efficiency and decrease the workload of a 
 - As a user, I want to be able to **add** a medication to a condition in the database
 - As a user, I want to be able to **add** a side effect to a drug in the database
 - As a user, I want to be able to **view** a list of all the conditions in the database
+- As a user, I want to be able to **view** a list of all the conditions in the database in alphabetical order
 - As a user, I want to be able to **view** a list of medications recommended for a selected condition
 - As a user, I want to be able to **add** a patient to the list of patients in the database
 - As a user, I want to be able to **view** a list of medications a patient is taking
