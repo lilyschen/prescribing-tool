@@ -174,17 +174,19 @@ public class PatientTab extends Tab {
         String selection = (String) conditionOptions.getSelectedItem();
         Condition selCond = findCondition(selection);
 
-        String[] drugs = getDrugsNamesList(selCond).toArray(new String[0]);
-        JComboBox drugOptions = new JComboBox(drugs);
-        JOptionPane.showMessageDialog(this, drugOptions, "Select a drug to prescribe to the patient",
-                JOptionPane.PLAIN_MESSAGE);
-        String drugName = (String) drugOptions.getSelectedItem();
-        Drug selDrug = selCond.findDrug(drugName);
-        patient.addDrug(selDrug);
-        String message = selDrug.getName() + " has been added to patient's drug list."
-                + "\nSide effects: " + selDrug.displaySideEffects();
-        JOptionPane.showMessageDialog(this, message, "Success!",
-                JOptionPane.PLAIN_MESSAGE);
+        if (selCond != null) {
+            String[] drugs = getDrugsNamesList(selCond).toArray(new String[0]);
+            JComboBox drugOptions = new JComboBox(drugs);
+            JOptionPane.showMessageDialog(this, drugOptions, "Select a drug to prescribe to the patient",
+                    JOptionPane.PLAIN_MESSAGE);
+            String drugName = (String) drugOptions.getSelectedItem();
+            Drug selDrug = selCond.findDrug(drugName);
+            patient.addDrug(selDrug);
+            String message = selDrug.getName() + " has been added to patient's drug list."
+                    + "\nSide effects: " + selDrug.displaySideEffects();
+            JOptionPane.showMessageDialog(this, message, "Success!",
+                    JOptionPane.PLAIN_MESSAGE);
+        }
     }
 
     // EFFECTS: prints out the names of the drugs in the patient's drug list

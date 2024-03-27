@@ -95,14 +95,23 @@ public class StatisticsTab extends Tab {
         String selection = (String) conditionOptions.getSelectedItem();
         Condition selCond = findCondition(selection);
 
-        String[] drugs = getDrugsNamesList(selCond).toArray(new String[0]);
-        JComboBox drugOptions = new JComboBox(drugs);
-        JOptionPane.showMessageDialog(this, drugOptions,
-                "Select a drug",
-                JOptionPane.PLAIN_MESSAGE);
-        String chosen = (String) drugOptions.getSelectedItem();
-        Drug selDrug = selCond.findDrug(chosen);
+        if (selCond != null) {
+            String[] drugs = getDrugsNamesList(selCond).toArray(new String[0]);
+            JComboBox drugOptions = new JComboBox(drugs);
+            JOptionPane.showMessageDialog(this, drugOptions,
+                    "Select a drug",
+                    JOptionPane.PLAIN_MESSAGE);
+            String chosen = (String) drugOptions.getSelectedItem();
+            Drug selDrug = selCond.findDrug(chosen);
+            int num = numOfPtOnDrug(selDrug);
+            return "The number of patient(s) currently taking " + selDrug.getName() + " is " + num;
+        } else {
+            return "Currently no conditions are available in the database";
+        }
+    }
 
+    // EFFECTS: returns the number of patients currently taking the given drug
+    private int numOfPtOnDrug(Drug selDrug) {
         int num = 0;
         String drugName = selDrug.getName();
         for (Patient patient : getController().getPrescribingTool().getPatients()) {
@@ -110,7 +119,7 @@ public class StatisticsTab extends Tab {
                 num++;
             }
         }
-        return "The number of patient(s) currently taking " + selDrug.getName() + " is " + num;
+        return num;
     }
 
     // EFFECTS: returns true if the given name matches a drug name in the drugs list,

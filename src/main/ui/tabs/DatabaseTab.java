@@ -298,7 +298,9 @@ public class DatabaseTab extends Tab {
         String selection = (String) conditionOptions.getSelectedItem();
         Condition selCond = findCondition(selection);
 
-        addDrugToCondition(selCond);
+        if (selCond != null) {
+            addDrugToCondition(selCond);
+        }
     }
 
     // MODIFIES: this
@@ -313,15 +315,17 @@ public class DatabaseTab extends Tab {
         String selection = (String) conditionOptions.getSelectedItem();
         Condition selCond = findCondition(selection);
 
-        String[] drugs = getDrugsNamesList(selCond).toArray(new String[0]);
-        JComboBox drugOptions = new JComboBox(drugs);
-        JOptionPane.showMessageDialog(this, drugOptions,
-                "Select a drug to add a side effect to",
-                JOptionPane.PLAIN_MESSAGE);
-        String chosen = (String) drugOptions.getSelectedItem();
-        Drug selDrug = selCond.findDrug(chosen);
+        if (selCond != null) {
+            String[] drugs = getDrugsNamesList(selCond).toArray(new String[0]);
+            JComboBox drugOptions = new JComboBox(drugs);
+            JOptionPane.showMessageDialog(this, drugOptions,
+                    "Select a drug to add a side effect to",
+                    JOptionPane.PLAIN_MESSAGE);
+            String chosen = (String) drugOptions.getSelectedItem();
+            Drug selDrug = selCond.findDrug(chosen);
 
-        addSideEffectToDrug(selDrug);
+            addSideEffectToDrug(selDrug);
+        }
     }
 
     // MODIFIES: this
