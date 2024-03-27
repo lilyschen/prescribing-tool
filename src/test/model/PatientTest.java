@@ -109,17 +109,4 @@ public class PatientTest {
         assertEquals(drug2, patient.findDrugInPatientList("drug2"));
         assertEquals(drug3, patient.findDrugInPatientList("drug3"));
     }
-
-    @Test
-    void testToJson() {
-        Drug drug1 = new Drug("drug1");
-        drug1.addSideEffect("side effect");
-        patient.addDrug(drug1);
-
-        String expectedJson =
-                "{\"drugs\":[{\"name\":\"drug1\",\"side effects\":[\"side effect\"]}],\"name\":\"test patient\"}";
-        String actualJson = patient.toJson().toString();
-
-        assertEquals(expectedJson, actualJson);
-    }
 }

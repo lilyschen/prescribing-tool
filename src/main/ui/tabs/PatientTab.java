@@ -55,24 +55,28 @@ public class PatientTab extends Tab {
 
         b1.addActionListener(e -> {
             String input = JOptionPane.showInputDialog("Please enter the patient's name: ");
-            input = input.toLowerCase();
-            Patient selPat = findPatient(input);
+            if (input != null) {
+                input = input.toLowerCase();
+                Patient selPat = findPatient(input);
 
-            if (selPat != null) {
-                JOptionPane.showMessageDialog(this, "You have selected " + selPat.getName());
-                modifyPatient(selPat);
-            } else {
-                JOptionPane.showMessageDialog(this, "Patient not found", "Warning",
-                        JOptionPane.WARNING_MESSAGE);
+                if (selPat != null) {
+                    JOptionPane.showMessageDialog(this, "You have selected " + selPat.getName());
+                    modifyPatient(selPat);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Patient not found", "Warning",
+                            JOptionPane.WARNING_MESSAGE);
+                }
             }
         });
 
         b2.addActionListener(e -> {
             String name = JOptionPane.showInputDialog("Enter the patient name.");
-            name = name.toLowerCase();
-            Patient newPat = new Patient(name);
-            getController().getPrescribingTool().addPatient(newPat);
-            modifyPatient(newPat);
+            if (name != null) {
+                name = name.toLowerCase();
+                Patient newPat = new Patient(name);
+                getController().getPrescribingTool().addPatient(newPat);
+                modifyPatient(newPat);
+            }
         });
 
         this.add(buttonRow);

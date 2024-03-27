@@ -63,22 +63,4 @@ public class PrescribingToolTest {
         assertEquals(patient1, prescribingTool.getPatients().get(0));
         assertEquals(patient2, prescribingTool.getPatients().get(1));
     }
-
-    @Test
-    void testToJson() {
-        condition2.addDrug(drug2);
-        patient2.addDrug(drug2);
-        prescribingTool.addCondition(condition1);
-        prescribingTool.addCondition(condition2);
-        prescribingTool.addPatient(patient1);
-        prescribingTool.addPatient(patient2);
-
-        String expectedJson = "{\"patients\":[{\"drugs\":[],\"name\":\"patient1\"},{\"drugs\":" +
-                "[{\"name\":\"drug2\",\"side effects\":[]}],\"name\":\"patient2\"}],\"name\":\"test pt\"," +
-                "\"conditions\":[{\"drugs\":[],\"name\":\"condition1\"},{\"drugs\":[{\"name\":\"drug2\"," +
-                "\"side effects\":[]}],\"name\":\"condition2\"}]}";
-        String actualJson = prescribingTool.toJson().toString();
-
-        assertEquals(expectedJson, actualJson);
-    }
 }

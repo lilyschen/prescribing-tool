@@ -242,17 +242,19 @@ public class DatabaseTab extends Tab {
     //          to the database
     private void addCondition() {
         String name = JOptionPane.showInputDialog("Enter the condition name.");
-        name = name.toLowerCase();
-        Condition newCond = new Condition(name);
-        getController().getPrescribingTool().addCondition(newCond);
+        if (name != null) {
+            name = name.toLowerCase();
+            Condition newCond = new Condition(name);
+            getController().getPrescribingTool().addCondition(newCond);
 
-        int selection = JOptionPane.showOptionDialog(this,
-                "Would you like to add a drug to this condition?", "Condition",
-                JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,
-                null, null, 0);
+            int selection = JOptionPane.showOptionDialog(this,
+                    "Would you like to add a drug to this condition?", "Condition",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,
+                    null, null, 0);
 
-        if (selection == 0) {
-            addDrugToCondition(newCond);
+            if (selection == 0) {
+                addDrugToCondition(newCond);
+            }
         }
     }
 
@@ -298,19 +300,21 @@ public class DatabaseTab extends Tab {
     // EFFECTS: allows user to add a drug and its side effect to the given condition
     private void addDrugToCondition(Condition condition) {
         String name = JOptionPane.showInputDialog("Enter the drug name.");
-        name = name.toLowerCase();
-        Drug newDrug = new Drug(name);
-        condition.addDrug(newDrug);
-        String message = name + " has been added successfully to " + condition.getName();
-        JOptionPane.showMessageDialog(this, message, "Success!", JOptionPane.PLAIN_MESSAGE);
+        if (name != null) {
+            name = name.toLowerCase();
+            Drug newDrug = new Drug(name);
+            condition.addDrug(newDrug);
+            String message = name + " has been added successfully to " + condition.getName();
+            JOptionPane.showMessageDialog(this, message, "Success!", JOptionPane.PLAIN_MESSAGE);
 
-        int selection = JOptionPane.showOptionDialog(this,
-                "Would you like to add a side effect to " + name + "?", "Drug: " + name,
-                JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,
-                null, null, 0);
+            int selection = JOptionPane.showOptionDialog(this,
+                    "Would you like to add a side effect to " + name + "?", "Drug: " + name,
+                    JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,
+                    null, null, 0);
 
-        if (selection == 0) {
-            addSideEffectToDrug(newDrug);
+            if (selection == 0) {
+                addSideEffectToDrug(newDrug);
+            }
         }
     }
 
@@ -318,10 +322,11 @@ public class DatabaseTab extends Tab {
     // EFFECTS: allows user to add a side effect to the given drug
     private void addSideEffectToDrug(Drug drug) {
         String sideEffect = JOptionPane.showInputDialog("Enter the side effect you would like to add");
-        sideEffect = sideEffect.toLowerCase();
-        drug.addSideEffect(sideEffect);
-        String message = sideEffect + " has been added successfully to " + drug.getName();
-        JOptionPane.showMessageDialog(this, message, "Success!", JOptionPane.PLAIN_MESSAGE);
+        if (sideEffect != null) {
+            sideEffect = sideEffect.toLowerCase();
+            drug.addSideEffect(sideEffect);
+            String message = sideEffect + " has been added successfully to " + drug.getName();
+            JOptionPane.showMessageDialog(this, message, "Success!", JOptionPane.PLAIN_MESSAGE);
+        }
     }
-
 }

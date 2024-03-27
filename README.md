@@ -38,4 +38,6 @@ I hope this project will increase the efficiency and decrease the workload of a 
 - followed Teller App format for Phase 1 of this project
 - modeled the JsonSerializationDemo format for Phase 2 of this project
 - for Phase 3 GUI: referenced SmartHome: https://github.students.cs.ubc.ca/CPSC210/LongFormProblemStarters
+- learned Swing syntax from https://youtube.com/watch?v=Kmgo00avvEw
+- learned JScrollPane from https://youtube.com/watch?v=OJSAnlzXRDk
 - condition & drug list from BC Pharmacy Association MACS Resources website
