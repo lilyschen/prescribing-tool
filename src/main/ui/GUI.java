@@ -9,6 +9,7 @@ import ui.tabs.PatientTab;
 import ui.tabs.StatisticsTab;
 
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -29,6 +30,8 @@ public class GUI extends JFrame {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
+    private MyWindowAdapter myWindowAdapter = new MyWindowAdapter();
+
     public static void main(String[] args) {
         new GUI();
     }
@@ -39,6 +42,7 @@ public class GUI extends JFrame {
         super("Prescribing Tool");
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(myWindowAdapter);
 
         prescribingTool = new PrescribingTool("My Prescribing Tool");
         jsonWriter = new JsonWriter(JSON_STORE);
@@ -56,6 +60,11 @@ public class GUI extends JFrame {
     //EFFECTS: returns Prescribing Tool object controlled by this UI
     public PrescribingTool getPrescribingTool() {
         return prescribingTool;
+    }
+
+    // EFFECTS: returns myWindowAdapter
+    public MyWindowAdapter getMyWindowAdapter() {
+        return myWindowAdapter;
     }
 
     //MODIFIES: this

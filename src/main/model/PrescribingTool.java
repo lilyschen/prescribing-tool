@@ -38,12 +38,16 @@ public class PrescribingTool implements Writable {
     // EFFECTS: adds condition to this prescribing tool
     public void addCondition(Condition condition) {
         conditions.add(condition);
+        EventLog.getInstance().logEvent(new Event("Added condition: "
+                + condition.getName() + " to " + this.name + " database"));
     }
 
     // MODIFIES: this
     // EFFECTS: adds patient to this prescribing tool
     public void addPatient(Patient patient) {
         patients.add(patient);
+        EventLog.getInstance().logEvent(new Event("Added patient: "
+                + patient.getName() + " to " + this.name + " database"));
     }
 
     // EFFECTS: returns number of conditions in this prescribing tool

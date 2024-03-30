@@ -26,6 +26,8 @@ public class Patient implements Writable {
     public void addDrug(Drug drug) {
         if (!drugs.contains(drug)) {
             drugs.add(drug);
+            EventLog.getInstance().logEvent(new Event("Added drug: "
+                    + drug.getName() + " to " + this.name + "'s drug list"));
         }
     }
 
@@ -34,6 +36,8 @@ public class Patient implements Writable {
     //          If the given drug was not in the list, does nothing
     public void removeDrug(Drug drug) {
         drugs.remove(drug);
+        EventLog.getInstance().logEvent(new Event("Removed drug: "
+                + drug.getName() + " from " + this.name + "'s drug list"));
     }
 
     // EFFECTS: if the given name is the name of a drug in

@@ -62,6 +62,7 @@ public class HomeTab extends Tab {
         });
 
         b3.addActionListener(e -> {
+            getController().getMyWindowAdapter().printEventLog();
             System.exit(0);
         });
 

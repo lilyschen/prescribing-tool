@@ -26,6 +26,7 @@ public class Condition implements Writable {
     public void addDrug(Drug drug) {
         if (!drugs.contains(drug)) {
             drugs.add(drug);
+            EventLog.getInstance().logEvent(new Event("Added drug: " + drug.getName() + " to " + this.name));
         }
     }
 
