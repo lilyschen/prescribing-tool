@@ -44,6 +44,25 @@ I hope this project will increase the efficiency and decrease the workload of a 
 - You can save the state of my application by clicking the Save button in the Home tab
 - You can reload the state of my application by clicking the Load button in the Home tab
 
+## Phase 4: Task 2
+Sat Mar 30 20:29:23 PDT 2024  
+Added condition: acne to My Prescribing Tool database
+
+Sat Mar 30 20:29:28 PDT 2024  
+Added drug: tretinoin to acne
+
+Sat Mar 30 20:29:35 PDT 2024  
+Added side effect: dry skin to tretinoin
+
+Sat Mar 30 20:30:00 PDT 2024  
+Added patient: emily to My Prescribing Tool database
+
+Sat Mar 30 20:30:03 PDT 2024  
+Added drug: tretinoin to emily's drug list
+
+Sat Mar 30 20:30:14 PDT 2024  
+Removed drug: tretinoin from emily's drug list
+
 ## Note
 - followed Teller App format for Phase 1 of this project
 - modeled the JsonSerializationDemo format for Phase 2 of this project
