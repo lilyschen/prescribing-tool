@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Calendar;
 import java.util.Date;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 // referenced Alarm System: https://github.students.cs.ubc.ca/CPSC210/AlarmSystem
 public class EventTest {
@@ -33,5 +33,20 @@ public class EventTest {
     @Test
     public void testToString() {
         assertEquals(d.toString() + "\n" + "Added drug: tretinoin to acne", e.toString());
+    }
+
+    @Test
+    public void testHashCode() {
+        assertEquals(13 * d.hashCode() + e.getDescription().hashCode(), e.hashCode());
+    }
+
+    @Test
+    public void testEquals() {
+        assertFalse(e.equals(null));
+        assertFalse(e.equals(e.getDescription()));
+        assertTrue(e.equals(e));
+
+        Event e2 = new Event("Added acetaminophen to headache");
+        assertFalse(e.equals(e2));
     }
 }
