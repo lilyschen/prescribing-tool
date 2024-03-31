@@ -16,8 +16,8 @@ public class PatientTab extends Tab {
 
     private static final String INIT_QUESTION = "Would you like search an existing patient or add a new patient?";
     private JLabel question;
-    JButton b1;
-    JButton b2;
+    private JButton b1;
+    private JButton b2;
     private JLabel imageLabel;
     private ImageIcon image;
 

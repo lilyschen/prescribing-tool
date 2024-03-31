@@ -18,13 +18,13 @@ public class DatabaseTab extends Tab {
 
     private static final String INIT_QUESTION = "Select an option:";
     private JLabel prompt;
-    JButton b1;
-    JButton b2;
-    JButton b3;
-    JButton b4;
-    JButton b5;
-    JPanel buttonRow1;
-    JPanel buttonRow2;
+    private JButton b1;
+    private JButton b2;
+    private JButton b3;
+    private JButton b4;
+    private JButton b5;
+    private JPanel buttonRow1;
+    private JPanel buttonRow2;
 
     //REQUIRES: GUI controller that holds this tab
     //EFFECTS: constructs a Database tab for console with buttons and a question
