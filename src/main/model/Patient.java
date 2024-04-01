@@ -60,6 +60,16 @@ public class Patient implements Writable {
         return drugs;
     }
 
+    // EFFECTS: returns a string of given patient's drugs
+    public String displayDrugList() {
+        StringBuilder drugNames = new StringBuilder("Medication List:");
+        for (Drug drug : drugs) {
+            drugNames.append("\n" + drug.getName());
+        }
+        EventLog.getInstance().logEvent(new Event("Viewed " + this.name + "'s drug list"));
+        return drugNames.toString();
+    }
+
     // Referenced Json Serialization Demo
     @Override
     public JSONObject toJson() {

@@ -103,34 +103,34 @@ public class StatisticsTab extends Tab {
                     JOptionPane.PLAIN_MESSAGE);
             String chosen = (String) drugOptions.getSelectedItem();
             Drug selDrug = selCond.findDrug(chosen);
-            int num = numOfPtOnDrug(selDrug);
+            int num = getController().getPrescribingTool().numOfPtOnDrug(selDrug);
             return "The number of patient(s) currently taking " + selDrug.getName() + " is " + num;
         } else {
             return "Currently no conditions are available in the database";
         }
     }
 
-    // EFFECTS: returns the number of patients currently taking the given drug
-    private int numOfPtOnDrug(Drug selDrug) {
-        int num = 0;
-        String drugName = selDrug.getName();
-        for (Patient patient : getController().getPrescribingTool().getPatients()) {
-            if (containsDrug(patient.getDrugs(), drugName)) {
-                num++;
-            }
-        }
-        return num;
-    }
+//    // EFFECTS: returns the number of patients currently taking the given drug
+//    private int numOfPtOnDrug(Drug selDrug) {
+//        int num = 0;
+//        String drugName = selDrug.getName();
+//        for (Patient patient : getController().getPrescribingTool().getPatients()) {
+//            if (containsDrug(patient.getDrugs(), drugName)) {
+//                num++;
+//            }
+//        }
+//        return num;
+//    }
 
-    // EFFECTS: returns true if the given name matches a drug name in the drugs list,
-    //          false otherwise
-    private boolean containsDrug(List<Drug> drugs, String name) {
-        for (Drug drug : drugs) {
-            if (drug.getName().equals(name)) {
-                return true;
-            }
-        }
-        return false;
-    }
+//    // EFFECTS: returns true if the given name matches a drug name in the drugs list,
+//    //          false otherwise
+//    private boolean containsDrug(List<Drug> drugs, String name) {
+//        for (Drug drug : drugs) {
+//            if (drug.getName().equals(name)) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
 }

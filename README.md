@@ -45,23 +45,45 @@ I hope this project will increase the efficiency and decrease the workload of a 
 - You can reload the state of my application by clicking the Load button in the Home tab
 
 ## Phase 4: Task 2
-Sat Mar 30 20:29:23 PDT 2024  
-Added condition: acne to My Prescribing Tool database
 
-Sat Mar 30 20:29:28 PDT 2024  
-Added drug: tretinoin to acne
+Sun Mar 31 22:33:30 PDT 2024  
+Event log cleared.
 
-Sat Mar 30 20:29:35 PDT 2024  
-Added side effect: dry skin to tretinoin
+Sun Mar 31 22:33:30 PDT 2024  
+Loaded data from database
 
-Sat Mar 30 20:30:00 PDT 2024  
-Added patient: emily to My Prescribing Tool database
+Sun Mar 31 22:34:25 PDT 2024  
+Added patient: jennifer to My Prescribing Tool database
 
-Sat Mar 30 20:30:03 PDT 2024  
-Added drug: tretinoin to emily's drug list
+Sun Mar 31 22:34:36 PDT 2024  
+Added drug: fluconazole to jennifer's drug list
 
-Sat Mar 30 20:30:14 PDT 2024  
-Removed drug: tretinoin from emily's drug list
+Sun Mar 31 22:34:50 PDT 2024  
+Viewed jennifer's drug list
+
+Sun Mar 31 22:34:54 PDT 2024  
+Removed drug: fluconazole from jennifer's drug list
+
+Sun Mar 31 22:35:01 PDT 2024  
+Viewed Conditions in the database
+
+Sun Mar 31 22:35:06 PDT 2024  
+Viewed Conditions in Alphabetical Order
+
+Sun Mar 31 22:35:16 PDT 2024  
+Added condition: cold sore to My Prescribing Tool database
+
+Sun Mar 31 22:35:23 PDT 2024  
+Added drug: valacyclovir to cold sore condition
+
+Sun Mar 31 22:35:29 PDT 2024  
+Added side effect: dizziness to drug valacyclovir
+
+Sun Mar 31 22:35:37 PDT 2024  
+Viewed Drug Usage Report for tretinoin
+
+Sun Mar 31 22:35:43 PDT 2024  
+Updates saved to database
 
 ## Note
 - followed Teller App format for Phase 1 of this project

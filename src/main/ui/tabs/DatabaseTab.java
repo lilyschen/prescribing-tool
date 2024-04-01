@@ -91,7 +91,7 @@ public class DatabaseTab extends Tab {
         JPanel conditionPanel = new JPanel();
         conditionPanel.setLayout(new BoxLayout(conditionPanel, BoxLayout.Y_AXIS));
 
-        for (Condition condition : getController().getPrescribingTool().getConditions()) {
+        for (Condition condition : getController().getPrescribingTool().getConditionsUnmodifiable()) {
             JLabel label = new JLabel(condition.getName());
             label.setCursor(new Cursor(Cursor.HAND_CURSOR));
             label.addMouseListener(new MouseAdapter() {
@@ -138,11 +138,8 @@ public class DatabaseTab extends Tab {
 
     // EFFECTS: returns a list of conditions in alphabetical order
     private List<Condition> alphabeticalOrderConditionList() {
-        List<String> conditionNames = new ArrayList<>();
-        for (Condition condition : getController().getPrescribingTool().getConditions()) {
-            conditionNames.add(condition.getName());
-        }
-        Collections.sort(conditionNames);
+        List<String> conditionNames = getController().getPrescribingTool().getAlphabeticalOrderConditionNameList();
+
         List<Condition> conditions = new ArrayList<>();
         for (String conditionName : conditionNames) {
             Condition condition = findCondition(conditionName);

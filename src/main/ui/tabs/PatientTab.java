@@ -122,7 +122,7 @@ public class PatientTab extends Tab {
                         "View patient: " + patient.getName(), JOptionPane.WARNING_MESSAGE);
             } else {
                 JTextArea textArea = new JTextArea();
-                textArea.setText(displayDrugList(patient));
+                textArea.setText(patient.displayDrugList());
                 textArea.setEditable(false);
                 JScrollPane scrollPane = new JScrollPane(textArea);
                 JOptionPane.showMessageDialog(this, scrollPane, "View patient: " + patient.getName(),
@@ -132,14 +132,14 @@ public class PatientTab extends Tab {
         }
     }
 
-    // EFFECTS: returns a string of given patient's drugs
-    private String displayDrugList(Patient patient) {
-        StringBuilder drugNames = new StringBuilder("Medication List:");
-        for (Drug drug : patient.getDrugs()) {
-            drugNames.append("\n" + drug.getName());
-        }
-        return drugNames.toString();
-    }
+//    // EFFECTS: returns a string of given patient's drugs
+//    private String displayDrugList(Patient patient) {
+//        StringBuilder drugNames = new StringBuilder("Medication List:");
+//        for (Drug drug : patient.getDrugs()) {
+//            drugNames.append("\n" + drug.getName());
+//        }
+//        return drugNames.toString();
+//    }
 
     // MODIFIES: this
     // EFFECTS: allows user to remove a drug that the given patient is taking

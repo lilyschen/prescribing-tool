@@ -26,7 +26,8 @@ public class Drug implements Writable {
     public void addSideEffect(String sideEffect) {
         if (!sideEffects.contains(sideEffect)) {
             sideEffects.add(sideEffect);
-            EventLog.getInstance().logEvent(new Event("Added side effect: " + sideEffect + " to " + this.name));
+            EventLog.getInstance()
+                    .logEvent(new Event("Added side effect: " + sideEffect + " to drug " + this.name));
         }
     }
 

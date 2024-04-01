@@ -26,9 +26,9 @@ public class GUI extends JFrame {
     private JTabbedPane sidebar;
     private PrescribingTool prescribingTool;
 
-    private static final String JSON_STORE = "./data/prescribingtool.json";
-    private JsonWriter jsonWriter;
-    private JsonReader jsonReader;
+//    private static final String JSON_STORE = "./data/prescribingtool.json";
+//    private JsonWriter jsonWriter;
+//    private JsonReader jsonReader;
 
     private MyWindowAdapter myWindowAdapter = new MyWindowAdapter();
 
@@ -45,8 +45,8 @@ public class GUI extends JFrame {
         addWindowListener(myWindowAdapter);
 
         prescribingTool = new PrescribingTool("My Prescribing Tool");
-        jsonWriter = new JsonWriter(JSON_STORE);
-        jsonReader = new JsonReader(JSON_STORE);
+//        jsonWriter = new JsonWriter(JSON_STORE);
+//        jsonReader = new JsonReader(JSON_STORE);
 
         sidebar = new JTabbedPane();
         sidebar.setTabPlacement(JTabbedPane.LEFT);
@@ -91,26 +91,14 @@ public class GUI extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: saves the Prescribing Tool to file
+    // EFFECTS: saves the Prescribing Tool to file and returns message of success or failure to save
     public String savePrescribingTool() {
-        try {
-            jsonWriter.open();
-            jsonWriter.write(prescribingTool);
-            jsonWriter.close();
-            return "Your updates have been saved successfully!";
-        } catch (FileNotFoundException e) {
-            return "Unable to write to file: " + JSON_STORE;
-        }
+        return prescribingTool.save();
     }
 
     // MODIFIES: this
-    // EFFECTS: loads Prescribing Tool from file
+    // EFFECTS: loads Prescribing Tool from file and returns message of success or failure to load
     public String loadPrescribingTool() {
-        try {
-            prescribingTool = jsonReader.read();
-            return "Previous data has been loaded successfully!";
-        } catch (IOException e) {
-            return "Unable to read from file: " + JSON_STORE;
-        }
+        return prescribingTool.load();
     }
 }
