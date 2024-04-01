@@ -85,6 +85,12 @@ Viewed Drug Usage Report for tretinoin
 Sun Mar 31 22:35:43 PDT 2024  
 Updates saved to database
 
+## Phase 4: Task 3
+![UML_Design_Diagram.png](UML_Design_Diagram.png)
+If I had more time to work on the project, I would create an abstract superclass that Condition and Patient would both extend from. Since Condition and Patient both contain a field of a list of Drug, they share some methods, such as add drug and find drug, that could be refactored and implemented in the superclass instead. In addition, since PrescribingTool has a field of a list of Condition and a field of a list of Patient, there are also some duplications in the methods within PrescribingTool and in the ui package that operate on these 2 lists. These could be refactored as well to eliminate duplications.
+
+
+
 ## Note
 - followed Teller App format for Phase 1 of this project
 - modeled the JsonSerializationDemo format for Phase 2 of this project
