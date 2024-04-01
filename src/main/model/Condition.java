@@ -22,7 +22,7 @@ public class Condition implements Writable {
 
     // MODIFIES: this
     // EFFECTS: adds the given drug to the drug list with no duplicates
-    //          if given drug is already in list, does nothing
+    //          if given drug is already in list, does nothing and logs Event
     public void addDrug(Drug drug) {
         if (!drugs.contains(drug)) {
             drugs.add(drug);

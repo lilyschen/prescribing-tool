@@ -101,9 +101,11 @@ public class PrescribingToolTest {
         assertEquals(0, prescribingTool.numOfPtOnDrug(drug1));
 
         patient1.addDrug(drug1);
+        patient1.addDrug(drug2);
         assertEquals(1, prescribingTool.numOfPtOnDrug(drug1));
 
         patient2.addDrug(drug1);
+        patient1.addDrug(drug2);
         assertEquals(2, prescribingTool.numOfPtOnDrug(drug1));
     }
 

@@ -21,7 +21,7 @@ public class Drug implements Writable {
 
     // MODIFIES: this
     // EFFECTS: adds the given side effect to the side effects list
-    //          with no duplicates
+    //          with no duplicates and logs Event
     //          if given side effect is already in list, does nothing
     public void addSideEffect(String sideEffect) {
         if (!sideEffects.contains(sideEffect)) {

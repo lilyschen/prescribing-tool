@@ -21,7 +21,7 @@ public class Patient implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds the given drug to the drug list with no duplicates
+    // EFFECTS: adds the given drug to the drug list with no duplicates and logs Event
     //          if given drug is already in list, does nothing
     public void addDrug(Drug drug) {
         if (!drugs.contains(drug)) {
@@ -32,7 +32,7 @@ public class Patient implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: removes the given drug from the drug list if it's in the list
+    // EFFECTS: removes the given drug from the drug list if it's in the list and logs Event
     //          If the given drug was not in the list, does nothing
     public void removeDrug(Drug drug) {
         drugs.remove(drug);
@@ -60,7 +60,7 @@ public class Patient implements Writable {
         return drugs;
     }
 
-    // EFFECTS: returns a string of given patient's drugs
+    // EFFECTS: returns a string of given patient's drugs and logs Event
     public String displayDrugList() {
         StringBuilder drugNames = new StringBuilder("Medication List:");
         for (Drug drug : drugs) {

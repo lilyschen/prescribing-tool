@@ -40,7 +40,7 @@ public class PrescribingTool implements Writable {
         return conditions;
     }
 
-    // EFFECTS: returns an unmodifiable list of conditions for viewing
+    // EFFECTS: returns an unmodifiable list of conditions for viewing and logs Event
     public List<Condition> getConditionsUnmodifiable() {
         EventLog.getInstance().logEvent(new Event("Viewed Conditions in the database"));
         return Collections.unmodifiableList(conditions);
@@ -51,7 +51,7 @@ public class PrescribingTool implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds condition to this prescribing tool
+    // EFFECTS: adds condition to this prescribing tool and logs Event
     public void addCondition(Condition condition) {
         conditions.add(condition);
         EventLog.getInstance().logEvent(new Event("Added condition: "
@@ -59,7 +59,7 @@ public class PrescribingTool implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds patient to this prescribing tool
+    // EFFECTS: adds patient to this prescribing tool and logs Event
     public void addPatient(Patient patient) {
         patients.add(patient);
         EventLog.getInstance().logEvent(new Event("Added patient: "
@@ -76,7 +76,7 @@ public class PrescribingTool implements Writable {
         return patients.size();
     }
 
-    // EFFECTS: returns the number of patients currently taking the given drug
+    // EFFECTS: returns the number of patients currently taking the given drug and logs Event
     public int numOfPtOnDrug(Drug selDrug) {
         int num = 0;
         String drugName = selDrug.getName();
@@ -100,7 +100,7 @@ public class PrescribingTool implements Writable {
         return false;
     }
 
-    // EFFECTS: returns a list of names of conditions in alphabetical order
+    // EFFECTS: returns a list of names of conditions in alphabetical order and logs Event
     public List<String> getAlphabeticalOrderConditionNameList() {
         List<String> conditionNames = new ArrayList<>();
         for (Condition condition : conditions) {
@@ -143,7 +143,7 @@ public class PrescribingTool implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: saves the Prescribing Tool to file and returns message of success or failure to save
+    // EFFECTS: saves the Prescribing Tool to file and returns message of success or failure to save and logs Event
     public String save() {
         try {
             jsonWriter.open();
@@ -158,7 +158,7 @@ public class PrescribingTool implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: loads Prescribing Tool from file and returns message of success or failure to load
+    // EFFECTS: loads Prescribing Tool from file and returns message of success or failure to load and logs Event
     public String load() {
         try {
             PrescribingTool loadedPt = jsonReader.read();
