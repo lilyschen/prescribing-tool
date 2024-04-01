@@ -26,10 +26,6 @@ public class GUI extends JFrame {
     private JTabbedPane sidebar;
     private PrescribingTool prescribingTool;
 
-//    private static final String JSON_STORE = "./data/prescribingtool.json";
-//    private JsonWriter jsonWriter;
-//    private JsonReader jsonReader;
-
     private MyWindowAdapter myWindowAdapter = new MyWindowAdapter();
 
     public static void main(String[] args) {
@@ -45,8 +41,6 @@ public class GUI extends JFrame {
         addWindowListener(myWindowAdapter);
 
         prescribingTool = new PrescribingTool("My Prescribing Tool");
-//        jsonWriter = new JsonWriter(JSON_STORE);
-//        jsonReader = new JsonReader(JSON_STORE);
 
         sidebar = new JTabbedPane();
         sidebar.setTabPlacement(JTabbedPane.LEFT);
