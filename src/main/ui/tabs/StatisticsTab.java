@@ -14,7 +14,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-// referenced SmartHome application from CPSC210
 // represents Statistics Tab/Panel
 public class StatisticsTab extends Tab {
     private static final String REPORT_GEN_MESSAGE = "Latest report: Today at ";

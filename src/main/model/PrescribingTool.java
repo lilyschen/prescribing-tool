@@ -13,7 +13,6 @@ import java.util.Collections;
 import java.util.List;
 
 // Represents a PrescribingTool having a collection of conditions and patients
-// Note: modeled the JsonSerializationDemo example from Phase 2
 public class PrescribingTool implements Writable {
     private String name;
     private List<Condition> conditions;  // a list of conditions available to prescribe from

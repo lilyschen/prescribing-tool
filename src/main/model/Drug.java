@@ -54,7 +54,6 @@ public class Drug implements Writable {
         return sideEffects;
     }
 
-    // Referenced Json Serialization Demo
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -64,7 +63,6 @@ public class Drug implements Writable {
     }
 
     // EFFECTS: returns side effects in this drug as a JSON array
-    // Referenced Json Serialization Demo
     private JSONArray sideEffectsToJson() {
         JSONArray jsonArray = new JSONArray();
         for (String se : sideEffects) {

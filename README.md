@@ -35,16 +35,15 @@ I hope this project will increase the efficiency and decrease the workload of a 
 - As a user, I want have the option to **save** all the new data added (new condition, drug, patient, etc) to file
 - As a user, I want have the option to **load** the previously saved data from file when I restart the application
 
-## Instructions for Grader
+## Instructions for User
 - You can go to the Database tab to add new conditions, add new drugs to a condition, and add new side effects to a drug
 - You can go to the Database tab to view conditions in original order or in alphabetical order
 - You can go to the Patient tab to search an existing patient by entering the patient's name
 - You can go to the Patient tab to search a patient, view the patient's drug list, and delete drugs from the drug list
-- You can locate my visual component by looking at the Home tab & the Patient tab
 - You can save the state of my application by clicking the Save button in the Home tab
 - You can reload the state of my application by clicking the Load button in the Home tab
 
-## Phase 4: Task 2
+## Sample Event Log
 
 Sun Mar 31 22:33:30 PDT 2024  
 Event log cleared.
@@ -85,16 +84,11 @@ Viewed Drug Usage Report for tretinoin
 Sun Mar 31 22:35:43 PDT 2024  
 Updates saved to database
 
-## Phase 4: Task 3
+## UML Diagram
 ![UML_Design_Diagram.png](UML_Design_Diagram.png)
 If I had more time to work on the project, I would create an abstract superclass that Condition and Patient would both extend from. Since Condition and Patient both contain a field of a list of Drug, they share some methods, such as add drug and find drug, that could be refactored and implemented in the superclass instead. In addition, since PrescribingTool has a field of a list of Condition and a field of a list of Patient, there are also some duplications in the methods within PrescribingTool and in the ui package that operate on these 2 lists. These could be refactored as well to eliminate duplications.
 
 
 
 ## Note
-- followed Teller App format for Phase 1 of this project
-- modeled the JsonSerializationDemo format for Phase 2 of this project
-- for Phase 3 GUI: referenced SmartHome: https://github.students.cs.ubc.ca/CPSC210/LongFormProblemStarters
-- learned Swing syntax from https://youtube.com/watch?v=Kmgo00avvEw
-- learned JScrollPane from https://youtube.com/watch?v=OJSAnlzXRDk
-- condition & drug list from BC Pharmacy Association MACS Resources website
+- Conditions & Drugs referenced from BC Pharmacy Association MACS Resources website

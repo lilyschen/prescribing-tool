@@ -13,7 +13,6 @@
 //import java.util.Scanner;
 //
 //// Prescribing application
-//// Note: modeled the JsonSerializationDemo example from Phase 2
 //public class PrescribingApp {
 //    private static final String JSON_STORE = "./data/prescribingtool.json";
 //    private Scanner input;

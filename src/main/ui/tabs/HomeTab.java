@@ -5,7 +5,6 @@ import ui.GUI;
 import javax.swing.*;
 import java.awt.*;
 
-// referenced SmartHome application from CPSC210
 // represents Home Tab/Panel
 public class HomeTab extends Tab {
 

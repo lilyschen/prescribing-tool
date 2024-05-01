@@ -10,7 +10,6 @@ import java.awt.*;
 import java.util.List;
 import java.util.ArrayList;
 
-// referenced SmartHome application from CPSC210
 // represents Patient Tab/Panel
 public class PatientTab extends Tab {
 

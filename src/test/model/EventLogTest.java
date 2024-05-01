@@ -9,7 +9,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-// referenced Alarm System: https://github.students.cs.ubc.ca/CPSC210/AlarmSystem
 public class EventLogTest {
     private Event e1;
     private Event e2;

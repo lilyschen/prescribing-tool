@@ -1,19 +1,13 @@
 package ui;
 
 import model.PrescribingTool;
-import persistence.JsonReader;
-import persistence.JsonWriter;
 import ui.tabs.DatabaseTab;
 import ui.tabs.HomeTab;
 import ui.tabs.PatientTab;
 import ui.tabs.StatisticsTab;
 
 import javax.swing.*;
-import java.awt.event.WindowAdapter;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
-// referenced SmartHome application from CPSC210: https://github.students.cs.ubc.ca/CPSC210/LongFormProblemStarters
 // represents Prescribing Application GUI
 public class GUI extends JFrame {
     public static final int HOME_TAB_INDEX = 0;

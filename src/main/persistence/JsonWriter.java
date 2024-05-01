@@ -8,7 +8,6 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 // Represents a writer that writes JSON representation of prescribing tool to file
-// Note: modeled the JsonSerializationDemo example from Phase 2
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;

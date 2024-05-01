@@ -6,7 +6,6 @@ import model.Patient;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-// referenced JsonSerializationDemo example for phase 2
 public class JsonTest {
     protected void checkDrug(Drug drug, String drugName, int sideEffectsSize) {
         assertEquals(drugName, drug.getName());

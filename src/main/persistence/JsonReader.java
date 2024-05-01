@@ -14,7 +14,6 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 // Represents a reader that reads prescribing tool from JSON data stored in file
-// Note: modeled the JsonSerializationDemo example from Phase 2
 public class JsonReader {
     private String source;
 

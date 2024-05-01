@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-// referenced SmartHome application from CPSC210
 // represents Database Tab/Panel
 public class DatabaseTab extends Tab {
 
